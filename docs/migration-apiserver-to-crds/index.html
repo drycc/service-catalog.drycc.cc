@@ -1,0 +1,550 @@
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+
+<!Doctype html>
+<html id="docs" class="Documentation">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"><!-- default styles.css on -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/callouts.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/tags.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/hover-anchors.css">
+    
+    
+    <!-- no custom css detected -->
+
+    
+    <meta name="description" content="Migration from API server to CRDs" />
+    
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/custom-jekyll/tags.js"></script>
+    <!-- no custom js detected -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Migration from API server to CRDs | Service Catalog - Kubernetes</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Migration from API server to CRDs" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes SIG Service Catalog" />
+<meta property="og:description" content="Kubernetes SIG Service Catalog" />
+<link rel="canonical" href="https://service-catalog.drycc.cc/docs/migration-apiserver-to-crds/" />
+<meta property="og:url" content="https://service-catalog.drycc.cc/docs/migration-apiserver-to-crds/" />
+<meta property="og:site_name" content="Service Catalog - Kubernetes" />
+<script type="application/ld+json">
+{"url":"https://service-catalog.drycc.cc/docs/migration-apiserver-to-crds/","@type":"WebPage","headline":"Migration from API server to CRDs","description":"Kubernetes SIG Service Catalog","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="https://service-catalog.drycc.cc/feed.xml" title="Service Catalog - Kubernetes" /> 
+</head>
+
+
+<body>
+
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+
+<header>
+    <a href="/" class="logo"></a>
+
+    <div class="nav-buttons" data-auto-burger="primary">
+        <ul class="global-nav">
+
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="https://github.com/drycc/service-catalog">GitHub</a></li>
+            <li><a href="/community">Community</a></li>
+        </ul>
+        <a href="/docs/walkthrough" class="button" id="tryKubernetes" data-auto-burger-exclude>Try Service Catalog</a>
+        <button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+    </div>
+
+    <nav id="mainNav">
+        <main data-auto-burger="primary">
+        <div class="nav-box">
+            <h3><a href="/docs/walkthrough">Get Started</a></h3>
+            <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs "Hello World" for Node.js.</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/docs/">Documentation</a></h3>
+            <p>Learn how to use Kubernetes with the use of walkthroughs, samples, and reference documentation. You can even <a href="/editdocs/" data-auto-burger-exclude>help contribute to the docs</a>!</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/community">Community</a></h3>
+            <p>If you need help, you can connect with other Kubernetes users and the Kubernetes authors, attend community events, and watch video presentations from around the web.</p>
+        </div>
+        </main>
+        <main data-auto-burger="primary">
+        <div class="left">
+            <h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+            <a href="https://github.com/kubernetes/kubernetes" class="button" data-auto-burger-exclude>View On Github</a>
+        </div>
+
+        <div class="right">
+            <h5 class="github-invite">Explore the community</h5>
+            <div class="social">
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+                <a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>Stack Overflow</span></a>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-users" class="mailing-list"><span>Mailing List</span></a>
+                <a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+            </div>
+        </div>
+        <div class="clear" style="clear: both"></div>
+        </main>
+    </nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+  <h1>Documentation</h1>
+  <h5>Documentation for using and learning about Service Catalog.</h5>
+  <div id="vendorStrip" class="light-text">
+    <ul>
+      <li><a href="/docs/" >HOME</a></li>
+      <li><a href="/docs/concepts" >CONCEPTS</a></li>
+      <li><a href="/docs/tasks" >TASKS</a></li>
+      <li><a href="/docs/install" >INSTALL</a></li>
+      <li><a href="/docs/walkthrough" >WALKTHROUGH</a></li>
+      <li><a href="/docs/cli" >CLI</a></li>
+    </ul>
+    <div id="searchBox">
+      <input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)" autofocus="autofocus">
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="encyclopedia">
+  <div id="docsToc">
+        <div class="pi-accordion">
+          
+  
+
+    
+
+    
+      <a class="item" data-title="Documentation" href="/docs/"></a>
+    
+  
+
+
+        </div> <!-- /pi-accordion -->
+    <button class="push-menu-close-button" onclick="kub.toggleToc()"></button>
+  </div> <!-- /docsToc -->
+
+  <div id="docsContent">
+        <p><a href="/editdocs#docs/migration-apiserver-to-crds.md" id="editPageButton">Edit This Page</a></p>
+
+        
+          <h1>Migration from API server to CRDs</h1>
+        
+
+        <p>Upgrading Service Catalog from versions 0.2.x (and earlier) to 0.3.x requires a database migration. 
+This document describes how the migration works and what actions must be performed.</p>
+
+<blockquote>
+  <p><strong>NOTE:</strong>
+Before starting the migration, make sure that you have performed a full backup of your cluster.
+You should also test the procedure on a testing environment first.</p>
+</blockquote>
+
+<p><img src="/docs/images/sc-migration-to-crds.svg" alt="Service Catalog upgrade" /></p>
+
+<p>The above picture describes changes in the Service Catalog architecture made between versions 0.2.0 and 0.3.0:</p>
+<ul>
+  <li>Custom Resource Definitions (native K8S feature) are now used to store Service Catalog objects</li>
+  <li>etcd and Aggregated API Server are no longer needed</li>
+  <li>Webhook Server was added to perform data validation/mutation using the admission webhooks mechanism</li>
+</ul>
+
+<h2 id="upgrade-service-catalog-as-a-helm-release">Upgrade Service Catalog as a Helm release</h2>
+
+<p>The Service Catalog Helm release can be upgraded using the <code class="highlighter-rouge">helm upgrade</code> command, which runs all necessary actions.</p>
+
+<p><img src="/docs/images/sc-migration-to-crds-steps.svg" alt="Service Catalog upgrade steps" /></p>
+
+<p>The upgrade to CRDs consists of the following steps:</p>
+<ol>
+  <li>Make API Server read-only. Before any backup, we should block any resource changes to be sure the backup makes a snapshot. We need to avoid any changes when the migration tool is backing up resources.</li>
+  <li>Check if Apiserver deployment with a given name exist. <strong>If deployment was not found we skip the migration</strong>.</li>
+  <li>Scale down the Controller Manager to avoid resources processing, such as Secret deletion.</li>
+  <li>Backup Service Catalog custom resources to files in a Persistent Volume.</li>
+  <li>Remove <code class="highlighter-rouge">OwnerReference</code> fields in all Secrets pointed by any ServiceBinding. This is needed to avoid Secret deletion.</li>
+  <li>Remove all Service Catalog resources. This must be done if the Service Catalog uses the main Kubernetes etcd instance.</li>
+  <li>Upgrade the Service Catalog: remove API Server, install CRDs, Webhook Server and roll up the Controller Manager.</li>
+  <li>Scale down the Controller Manager to avoid any resource processing while applying resources.</li>
+  <li>Restore all resources. The migration tool sets all necessary fields added in the Service Catalog 0.3.0. 
+Creating resources triggers all logic implemented in webhooks so we can be sure all data are consistent.
+ServiceInstances are created and then updated because of class/plan references fields. 
+The validation webhooks denies creating ServiceInstances if the reference to ClusterServiceClass or ServiceClass is not set in following fields:
+Spec.ClusterServiceClassRef, Spec.ClusterServicePlanRef, Spec.ServiceClassRef, Spec.ServicePlanRef.
+These fields are set during an update operation.</li>
+  <li>Add proper <code class="highlighter-rouge">OwnerReference</code> to all Secrets pointed by ServiceBindings.</li>
+  <li>Scale up the Controller Manager.</li>
+</ol>
+
+<blockquote>
+  <p><strong>NOTE:</strong> In step 6, there is no difference between Service Catalog upgrade using your own etcd or the main Kubernetes etcd.</p>
+</blockquote>
+
+<h2 id="upgrade-service-catalog-manually">Upgrade Service Catalog manually</h2>
+
+<h3 id="backup-and-delete-resources">Backup and delete resources</h3>
+
+<p>Execute the <code class="highlighter-rouge">backup</code> action to scale down the Controller Manager, remove owner references in Secrets and store all resources in a specified folder, then delete all Service Catalog resources.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./service-catalog migration <span class="nt">--action</span> backup <span class="nt">--storage-path</span><span class="o">=</span>data/ <span class="nt">--service-catalog-namespace</span><span class="o">=</span>catalog <span class="nt">--controller-manager-deployment</span><span class="o">=</span>catalog-catalog-controller-manager <span class="nt">--apiserver-deployment</span><span class="o">=</span>catalog-catalog-apiserver
+</code></pre></div></div>
+
+<h3 id="upgrade">Upgrade</h3>
+
+<p>Uninstall old Service Catalog and install the new one (version 0.3.0).</p>
+
+<h3 id="restore">Restore</h3>
+
+<p>Execute <code class="highlighter-rouge">restore action</code> to restore all resources and scale up the Controller Manager.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./service-catalog migration <span class="nt">--action</span> restore <span class="nt">--storage-path</span><span class="o">=</span>data/ <span class="nt">--service-catalog-namespace</span><span class="o">=</span>catalog <span class="nt">--controller-manager-deployment</span><span class="o">=</span>catalog-catalog-controller-manager
+</code></pre></div></div>
+
+<h2 id="migration-tool">Migration tool</h2>
+
+<p>Migration tool is a set of helper functions integrated into the Service Catalog binary.</p>
+
+<h3 id="build">Build</h3>
+<p>To run the migration tool, compile the <code class="highlighter-rouge">service-catalog</code> binary by executing the following command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make build
+</code></pre></div></div>
+
+<p>If you run the migration tool on OSX and want to get a native binary, add the <code class="highlighter-rouge">PLATFORM</code> environment variable:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">PLATFORM</span><span class="o">=</span>darwin make build
+</code></pre></div></div>
+
+<p>The resulting executable file can be found in the <code class="highlighter-rouge">bin</code> subdirectory.</p>
+
+<h3 id="preparation">Preparation</h3>
+
+<blockquote>
+  <p><strong>CAUTION:</strong> You can safely remove the migration job PVC that contains data about your Service Catalog resources <strong>ONLY</strong> when the migration ends up successfully.</p>
+</blockquote>
+
+<p>In order to perform a successful migration, the Service Catalog resources can’t be in the unfinished or deleted state. Otherwise, the upgrade job can fail.</p>
+
+<p>To check if your cluster is ready for migration, use the sanity check <a href="https://github.com/drycc/service-catalog/blob/master/contrib/hack/migration-check.sh">script</a>.</p>
+
+<p>The script checks if the Service Catalog resources are prepared for migration. If some of them are not ready, the script prints a proper error message.</p>
+
+<p>There are a few possible messages you can see:</p>
+<ul>
+  <li><code class="highlighter-rouge">There are being deleted {type}</code> - prints the resources list of a given type with deletionTimestamp set.</li>
+  <li><code class="highlighter-rouge">There are {type} in progress</code> - prints the resources list of a given type with <code class="highlighter-rouge">asyncOpInProgress</code> set to <code class="highlighter-rouge">true</code>.</li>
+  <li><code class="highlighter-rouge">ServiceClass not exist for the ServiceInstances:</code> - prints the Service Instances list which Service Class was deleted.</li>
+</ul>
+
+<p>The above errors can be fixed manually, read more about it in <a href="https://github.com/drycc/service-catalog/blob/master/docs/tasks/stuck_instance.md">this</a> document.</p>
+
+<h3 id="execution">Execution</h3>
+
+<p>You can run the <code class="highlighter-rouge">service-catalog</code> binary with the <code class="highlighter-rouge">migration</code> parameter which triggers the migration process. For example, run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./service-catalog migration <span class="nt">--action</span> restore <span class="nt">--storage-path</span><span class="o">=</span>data/ <span class="nt">--service-catalog-namespace</span><span class="o">=</span>catalog <span class="nt">--controller-manager-deployment</span><span class="o">=</span>catalog-catalog-controller-manager
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Flag</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>action</td>
+      <td>Specifies the action which must be executed. The possible values are <code class="highlighter-rouge">backup</code> or <code class="highlighter-rouge">restore</code>.</td>
+    </tr>
+    <tr>
+      <td>storage-path</td>
+      <td>Points to a folder where resources will be saved.</td>
+    </tr>
+    <tr>
+      <td>service-catalog-namespace</td>
+      <td>Specifies the namespace in which the Service Catalog is installed.</td>
+    </tr>
+    <tr>
+      <td>controller-manager-deployment</td>
+      <td>Provides the Controller Manager deployment name.</td>
+    </tr>
+    <tr>
+      <td>apiserver-deployment</td>
+      <td>Provides the Apiserver deployment name. It is required only for the <code class="highlighter-rouge">backup</code> phase.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="implementation-details">Implementation details</h3>
+
+<p>In order to get a consistent backup, we have to make sure that no resources are modified during the backup process.
+To achieve that, the migration tool creates <code class="highlighter-rouge">ValidatingWebhookConfiguration</code> at the beginning of the backup process 
+to intercept and reject all attempts to mutate Service Catalog resources. Because of the limitation of the Aggregated API Server used in the previous version of Service Catalog, this webhook call fails with the following message:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>failed calling webhook <span class="s2">"validating.reject-changes-to-sc-crds.servicecatalog.k8s.io"</span>: 
+webhook does not accept v1beta1 AdmissionReviewRequest
+</code></pre></div></div>
+<p>This error message is presented in case of a modification or creation attempt of any Service Catalog resource during the backup process, and it means that the write protection works as expected.</p>
+
+<p>To test the mutation blocking feature, execute the following commands:</p>
+<ul>
+  <li>to enable the write protection:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./service-catalog migration <span class="nt">--action</span> deploy-blocker <span class="nt">--service-catalog-namespace</span><span class="o">=</span>default
+</code></pre></div>    </div>
+  </li>
+  <li>to disable the write protection:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./service-catalog migration <span class="nt">--action</span> undeploy-blocker <span class="nt">--service-catalog-namespace</span><span class="o">=</span>default
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h2 id="cleanup">Cleanup</h2>
+
+<p>You can delete all the migration-related resources using this command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl delete clusterrole,clusterrolebinding,serviceaccount,job <span class="nt">-n</span> catalog <span class="nt">-l</span> migration-job<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<p>In case your migration job failed, you can check its logs using the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs <span class="nt">-n</span> catalog <span class="nt">-l</span> migration-job<span class="o">=</span><span class="nb">true</span>
+</code></pre></div></div>
+
+<h2 id="rollback">Rollback</h2>
+
+<p>In case you want to revert the upgrade, use the <code class="highlighter-rouge">helm rollback</code> command which will restore the Service Catalog API Server version.</p>
+
+<p>Before you proceed, you must delete all the Service Catalog resources and CRDs. You must also delete the resources that are not necessary for the Service Catalog API Server version. Use the following commands:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl delete crd -l svcat=true
+kubectl delete secret -n catalog catalog-catalog-webhook-cert
+kubectl delete sa -n catalog service-catalog-webhook
+kubectl delete sa -n catalog clean-job-account
+</code></pre></div></div>
+
+<p>Then you can execute the rollback using this command:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm rollback catalog 1 --cleanup-on-fail --no-hooks
+</code></pre></div></div>
+
+<p>The migration job PVC with the data about your Service Catalog resources still exists after the rollback. You can perform the migration again to restore your resources.</p>
+
+<p>To restore your Service Catalog resources, copy their data from the PVC onto your local machine using <code class="highlighter-rouge">kubectl cp</code> command. Then, run the migration job again with the command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./service-catalog migration <span class="nt">--action</span> restore <span class="nt">--storage-path</span><span class="o">={</span>PATH_TO_YOUR_RESOURCES<span class="o">}</span> <span class="nt">--service-catalog-namespace</span><span class="o">=</span>catalog <span class="nt">--controller-manager-deployment</span><span class="o">=</span>catalog-catalog-controller-manager
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>TIP:</strong> Use a sanity check script to ensure that upgrade will succeeded and your resources will be restored</p>
+</blockquote>
+
+
+        
+           <a href="" onclick="window.open('https://github.com/drycc/service-catalog/issues/new?title=Issue%20with%20' +
+           'service-catalog.drycc.cc'+window.location.pathname)" class="button issue">Create an Issue</a>
+        
+        
+          <a href="/editdocs#docs/migration-apiserver-to-crds.md" class="button issue">Edit this Page</a>
+        
+    </div>
+</section>
+
+<footer col="12">
+    <main class="light-text">
+        <nav>
+            <a href="/docs/walkthrough">Get Started</a>
+            <a href="/docs/">Documentation</a>
+            <a href="/community">Community</a>
+        </nav>
+        <div class="social">
+            <div>
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="https://kubernetes.slack.com/messages/sig-service-catalog" class="slack"><span>Slack</span></a>
+            </div>
+            <div>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-sig-service-catalog" class="mailing-list"><span>Mailing List</span></a>
+            </div>
+            <div>
+                <a href="/docs/install" class="button">Get Service Catalog</a>
+                <a href="/docs/devguide" class="button">Contribute</a>
+            </div>
+        </div>
+        <div id="miceType" class="center">
+            &copy; 2022 The Kubernetes Authors | Documentation Distributed under <a href="/LICENSE" class="light-text">CC BY 4.0</a>
+        </div>
+        <div id="miceType" class="center">
+            Copyright &copy; 2022 The Linux Foundation&reg;. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" class="light-text">Trademark Usage page</a>
+        </div>
+    </main>
+</footer>
+
+<button class="flyout-button" onclick="kub.toggleToc()"></button>
+
+<style>
+.cse .gsc-control-cse, .gsc-control-cse, {
+    padding: 0;
+}
+  .gsc-control-cse table, .gsc-control-cse-en table {
+      margin:0px !important;
+  }
+  .gsc-above-wrapper-area {
+      border-bottom: 0;
+  }
+</style>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-36037335-10', 'auto');
+ga('send', 'pageview');
+
+// hide docs nav area if no nav is present, or if nav only contains a link to the current page
+/*(function () {
+    window.addEventListener('DOMContentLoaded', init)
+
+        // play nice with our neighbors
+        function init() {
+            window.removeEventListener('DOMContentLoaded', init)
+                hideNav()
+        }
+
+    function hideNav(toc){
+        if (!toc) toc = document.querySelector('#docsToc')
+        if (!toc) return
+            var container = toc.querySelector('.container')
+
+                // container is built dynamically, so it may not be present on the first runloop
+                if (container) {
+                    if (container.childElementCount === 0 || toc.querySelectorAll('a.item').length === 1) {
+                        toc.style.display = 'none'
+                            document.getElementById('docsContent').style.width = '100%'
+                    }
+                } else {
+                    requestAnimationFrame(function () {
+                        hideNav(toc)
+                    })
+                }
+    }
+})();*/
+</script>
+
+        <script>
+
+            $(function () {
+                'use strict';
+
+                /* selector */
+                var postHeader = 'h1,h2,h3,h4';
+
+                $(postHeader).filter('[id]').each(function () {
+                    var header      = $(this),
+                            headerID    = header.attr('id'),
+                            anchorClass = 'header-link',
+                            anchorIcon  = '<i class="octicon octicon-link" aria-hidden="true"></i>';
+
+                    if (headerID) {
+                        header.prepend($('<a />').addClass(anchorClass).attr({ 'href': '#' + headerID, 'aria-hidden': 'true' }).html(anchorIcon));
+                    }
+
+                    return this;
+                });
+            });
+
+
+        </script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+    <!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+
+
+</body>
+</html>

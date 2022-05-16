@@ -1,0 +1,127 @@
+<h1 id="split-plans-from-serviceclasses">Split Plans from ServiceClasses</h1>
+
+<p>Proposed: 2017-08-08
+Approved: 2017-08-15</p>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>Proposal to split Plans from ServiceClass to become a top-level object in our API.</p>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>If we get a ServiceClass, we get all of the Plans, which potentially contain a
+lot of data. The data of concern is primarily the Schema information used for
+exposing the details of a ServicePlan to a UI.</p>
+
+<h2 id="constraints-and-assumptions">Constraints and Assumptions</h2>
+
+<ul>
+  <li>It is desired to have the ServicePlan data in one place and not
+duplicated. Duplicated data gets out of sync.</li>
+</ul>
+
+<h2 id="proposed-design">Proposed Design</h2>
+
+<ul>
+  <li>new ServicePlan resource based on existing ServicePlan object</li>
+  <li>Implement FieldSelector for ServicePlan on <code class="highlighter-rouge">Free</code> field combined with ServiceClass Reference</li>
+</ul>
+
+<h3 id="serviceclass-api-changes">ServiceClass API Changes</h3>
+
+<p>We remove the array of ServicePlans defined inline.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// ServiceClass represents an offering in the service catalog.</span><span class="x">
+</span><span class="k">type</span><span class="x"> </span><span class="n">ServiceClass</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+    </span><span class="o">...</span><span class="x">
+
+    </span><span class="c">// All references to ServicePlans are removed</span><span class="x">
+    
+    </span><span class="o">...</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<h3 id="serviceplan-api-resource">ServicePlan API Resource</h3>
+
+<p>Added the kubernetes TypeMeta and ObjectMeta.</p>
+
+<p>Add a Kubernetes LocalObjectReference for the ServiceClass that owns
+the ServicePlan.</p>
+
+<p>Annotations for client and not being namespaced.</p>
+
+<p>No other changes.</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// ServicePlan represents a tier of a ServiceClass.</span><span class="x">
+</span><span class="k">type</span><span class="x"> </span><span class="n">ServicePlan</span><span class="x"> </span><span class="k">struct</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">metav1</span><span class="o">.</span><span class="n">TypeMeta</span><span class="x">   </span><span class="s">`json:",inline"`</span><span class="x">
+	</span><span class="n">metav1</span><span class="o">.</span><span class="n">ObjectMeta</span><span class="x"> </span><span class="s">`json:"metadata,omitempty"`</span><span class="x">
+
+    </span><span class="o">...</span><span class="x">
+    
+        </span><span class="c">// ServiceClass is the Class of Service that this plan implements. </span><span class="x">
+	</span><span class="n">ServiceClass</span><span class="x"> </span><span class="n">v1</span><span class="o">.</span><span class="n">LocalObjectReference</span><span class="x"> </span><span class="s">`json:"serviceClass"`</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// ServicePlanList is a list of instances.
+type ServicePlanList struct {
+	metav1.TypeMeta `json:",inline"`
+	metav1.ListMeta `json:"metadata,omitempty"`
+
+	Items []ServicePlan `json:"items"`
+}
+</code></pre></div></div>
+
+<p>ServiceClass is cluster-scoped, so ServicePlan is cluster-scoped. Possibility
+of collision of two ServicePlans from different ServiceClass based on
+Name. This will be addressed by concatinating the ServiceClass
+ExternalID onto the end of the incoming ServicePlan Name and separated
+by a dash.</p>
+
+<h3 id="api-server-changes">API Server Changes</h3>
+
+<p>Addition of new types. A not namespaced type ServicePlan and the list of the
+ServicePlan type. Plumbing of ServicePlan from rest input to storage. Validation
+code changes for ServiceClass and ServicePlan.</p>
+
+<h3 id="controller-manager-changes">Controller-Manager Changes</h3>
+
+<p>Creation of ServiceClass separate from ServicePlan.</p>
+
+<p>Separate creation of each individual ServicePlan.</p>
+
+<p>Create each ServicePlan with link to the owning ServiceClass. Create
+ServiceClass after all ServicePlans have been created.</p>
+
+<p>Lookup of a ServicePlan changes. Lookup by name can be done directly.</p>
+
+<p>Lookup of all Plans a serviceclass owns involves iterating over all of
+the plans from every service class and accumulating them.</p>
+
+<h3 id="admission-controllers">Admission-Controllers</h3>
+
+<p>ServicePlanDefault controller is modified to adapt to new API and client.</p>
+
+<h3 id="build-changes">Build Changes</h3>
+
+<p>No changes, but new build output. Code generation output for ServicePlan. Client
+and listers and informers.</p>
+
+<h2 id="drawbacks">Drawbacks</h2>
+
+<ul>
+  <li>Inefficient to find ServicePlans owned by a ServiceClass. Fixed by
+implementing the field selector on plans and using a field
+selection on the ServiceClassRef field.</li>
+</ul>
+
+<h2 id="later-options">Later Options</h2>
+<ul>
+  <li>Create a Plan stub object consisting of the free data and pointer to Plan.</li>
+  <li>Modify ServiceClass to have Status of number of free and non-free plans
+filled in by controller.</li>
+  <li>Implementation of FieldSelector on ServicePlan for the Free and
+ServiceClass Reference fields. #1124 can be done at same time, or
+after this.</li>
+</ul>

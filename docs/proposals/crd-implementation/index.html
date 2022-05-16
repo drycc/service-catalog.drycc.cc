@@ -1,0 +1,133 @@
+<h1 id="service-catalog-migration-to-crds">Service Catalog migration to CRDs</h1>
+
+<h2 id="implemented-features">Implemented features</h2>
+
+<p>The API server custom features were migrated to the admission webhook approach.</p>
+
+<p>The table converter API server feature was migrated to the <a href="https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#additional-printer-columns">Additional Printer Columns</a> feature.</p>
+
+<h2 id="project-changes">Project changes</h2>
+
+<p>The architecture after the migration looks as follows:</p>
+
+<p><img src="/docs/images/current.png" width="75%" height="75%" /></p>
+
+<p>The Service Catalog resources are grouped under the <code class="highlighter-rouge">svcat</code> name. With that feature, you can list them with the <code class="highlighter-rouge">kubectl get svcat</code> command.</p>
+
+<h3 id="chart-changes">Chart changes</h3>
+
+<p>The following files were added to the Service Catalog helm chart:</p>
+
+<ul>
+  <li><strong>crds.yaml</strong> - CustomResourceDefinitions for the Service Catalog resources</li>
+  <li><strong>webhook-deployment.yaml</strong> - webhook server deployment</li>
+  <li><strong>webhook-register.yaml</strong> - registration of the webhook server operations</li>
+  <li><strong>webhook-service.yaml</strong> - service for the webhook server</li>
+  <li><strong>cleaner-job.yaml</strong> - creates the <code class="highlighter-rouge">pre-delete</code> job which ensures that all CRDs and CRs are removed after helm release deletion</li>
+</ul>
+
+<p>These files were deleted from the Service Catalog helm chart because they are not necessary anymore due to the API server removal:</p>
+
+<ul>
+  <li><strong>apiregistration.yaml</strong></li>
+  <li><strong>apiserver-deployment.yaml</strong></li>
+  <li><strong>apiserver-service.yaml</strong></li>
+  <li><strong>etcd-pvc.yaml</strong></li>
+</ul>
+
+<p>All the webhook server configuration can be found under the <code class="highlighter-rouge">webhook</code> field in the chart’s <code class="highlighter-rouge">values.yaml</code> file.</p>
+
+<h3 id="code-changes">Code changes</h3>
+
+<p>The following code changes were introduced to the Service Catalog:</p>
+
+<ul>
+  <li><strong>pkg/webhookutil</strong> - under this directory you can find the common logic used in the webhook server implementation</li>
+  <li><strong>pkg/webhook/servicecatalog</strong> - here you can find the webhook server logic for all of the Service Catalog resources</li>
+  <li><strong>cmd/webhook/server</strong> - the implementation of the webhook server where you can find the validation and mutation webhook registration</li>
+  <li><strong>pkg/cleaner</strong> - responsible for removing CRD and CR when removing a helm release</li>
+  <li><strong>pkg/probe</strong> - responsible for checking if webhook/controller is ready to use (readiness probe), especially if all required CRDs exist and have specific state</li>
+</ul>
+
+<p>All of the webhook logic is covered by the unit tests. The API server tests were deleted.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<p>Mutating and validating admission webhooks are registered in the chart’s file <strong>webhook-register.yaml</strong>. For example, the registration of the Service Instances looks as follows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">admissionregistration.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">MutatingWebhookConfiguration</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">-webhook</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+<span class="na">webhooks</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">mutating.serviceinstances.servicecatalog.k8s.io</span>
+  <span class="na">clientConfig</span><span class="pi">:</span>
+    <span class="na">caBundle</span><span class="pi">:</span> 
+    <span class="na">service</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">-webhook</span>
+      <span class="na">namespace</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/mutating-serviceinstances"</span>
+  <span class="na">failurePolicy</span><span class="pi">:</span> <span class="s">Fail</span>
+  <span class="na">rules</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">operations</span><span class="pi">:</span> <span class="pi">[</span> <span class="s2">"</span><span class="s">CREATE"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">UPDATE"</span> <span class="pi">]</span>
+    <span class="na">apiGroups</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">servicecatalog.k8s.io"</span><span class="pi">]</span>
+    <span class="na">apiVersions</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">v1beta1"</span><span class="pi">]</span>
+    <span class="na">resources</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">serviceinstances"</span><span class="pi">]</span>
+
+<span class="nn">---</span>
+
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">admissionregistration.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ValidatingWebhookConfiguration</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">-validating-webhook</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+<span class="na">webhooks</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">validating.serviceinstances.servicecatalog.k8s.io</span>
+  <span class="na">clientConfig</span><span class="pi">:</span>
+    <span class="na">caBundle</span><span class="pi">:</span> 
+    <span class="na">service</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">-webhook</span>
+      <span class="na">namespace</span><span class="pi">:</span> <span class="s2">"</span><span class="s">"</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/validating-serviceinstances"</span>
+  <span class="na">failurePolicy</span><span class="pi">:</span> <span class="s">Fail</span>
+  <span class="na">rules</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">operations</span><span class="pi">:</span> <span class="pi">[</span> <span class="s2">"</span><span class="s">CREATE"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">UPDATE"</span> <span class="pi">]</span>
+    <span class="na">apiGroups</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">servicecatalog.k8s.io"</span><span class="pi">]</span>
+    <span class="na">apiVersions</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">v1beta1"</span><span class="pi">]</span>
+    <span class="na">resources</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">serviceinstances"</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>NOTE:</strong> Each kind is registered separately in the <strong>webhooks</strong> array.</p>
+</blockquote>
+
+<p>If the resource is registered, the webhook logic will be triggered when the registered operation on this resource occurs. The example of the webhook logic implementation looks as follows:</p>
+
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">// Handle admission requests.</span><span class="x">
+</span><span class="k">func</span><span class="x"> </span><span class="p">(</span><span class="n">h</span><span class="x"> </span><span class="o">*</span><span class="n">CreateUpdateHandler</span><span class="p">)</span><span class="x"> </span><span class="n">Handle</span><span class="p">(</span><span class="n">ctx</span><span class="x"> </span><span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span><span class="x"> </span><span class="n">req</span><span class="x"> </span><span class="n">admission</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span><span class="x"> </span><span class="n">admission</span><span class="o">.</span><span class="n">Response</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="n">si</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">sc</span><span class="o">.</span><span class="n">ServiceInstance</span><span class="p">{}</span><span class="x">
+	</span><span class="n">webhookutil</span><span class="o">.</span><span class="n">MatchKinds</span><span class="p">(</span><span class="n">si</span><span class="p">,</span><span class="x"> </span><span class="n">req</span><span class="o">.</span><span class="n">Kind</span><span class="p">)</span><span class="x">
+	</span><span class="n">h</span><span class="o">.</span><span class="n">decoder</span><span class="o">.</span><span class="n">Decode</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">si</span><span class="p">)</span><span class="x">
+
+	</span><span class="k">switch</span><span class="x"> </span><span class="n">req</span><span class="o">.</span><span class="n">Operation</span><span class="x"> </span><span class="p">{</span><span class="x">
+	</span><span class="k">case</span><span class="x"> </span><span class="n">admissionTypes</span><span class="o">.</span><span class="n">Create</span><span class="o">:</span><span class="x">
+		</span><span class="n">h</span><span class="o">.</span><span class="n">mutateOnCreate</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span><span class="x"> </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">mutated</span><span class="p">)</span><span class="x">
+	</span><span class="k">case</span><span class="x"> </span><span class="n">admissionTypes</span><span class="o">.</span><span class="n">Update</span><span class="o">:</span><span class="x">
+		</span><span class="n">oldObj</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="o">&amp;</span><span class="n">sc</span><span class="o">.</span><span class="n">ServiceInstance</span><span class="p">{}</span><span class="x">
+		</span><span class="n">h</span><span class="o">.</span><span class="n">decoder</span><span class="o">.</span><span class="n">DecodeRaw</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">OldObject</span><span class="p">,</span><span class="x"> </span><span class="n">oldObj</span><span class="p">)</span><span class="x">
+		</span><span class="n">h</span><span class="o">.</span><span class="n">mutateOnUpdate</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span><span class="x"> </span><span class="n">req</span><span class="p">,</span><span class="x"> </span><span class="n">oldObj</span><span class="p">,</span><span class="x"> </span><span class="n">mutated</span><span class="p">)</span><span class="x">
+	</span><span class="k">default</span><span class="o">:</span><span class="x">
+		</span><span class="k">return</span><span class="x"> </span><span class="n">admission</span><span class="o">.</span><span class="n">Allowed</span><span class="p">(</span><span class="s">"action not taken"</span><span class="p">)</span><span class="x">
+	</span><span class="p">}</span><span class="x">
+
+	</span><span class="n">rawMutated</span><span class="p">,</span><span class="x"> </span><span class="n">err</span><span class="x"> </span><span class="o">:=</span><span class="x"> </span><span class="n">json</span><span class="o">.</span><span class="n">Marshal</span><span class="p">(</span><span class="n">mutated</span><span class="p">)</span><span class="x">
+	</span><span class="k">return</span><span class="x"> </span><span class="n">admission</span><span class="o">.</span><span class="n">PatchResponseFromRaw</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">AdmissionRequest</span><span class="o">.</span><span class="n">Object</span><span class="o">.</span><span class="n">Raw</span><span class="p">,</span><span class="x"> </span><span class="n">rawMutated</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre></div></div>
+
+<blockquote>
+  <p><strong>NOTE:</strong> The webhook implementation logic is common for all of the resources.</p>
+</blockquote>
+
+<p>For the webhook server implementation, the <a href="https://github.com/kubernetes-sigs/controller-runtime">sigs.k8s.io/controller-runtime</a> dependency is used in the latest version - <code class="highlighter-rouge">v0.2.0-beta.0</code>.</p>

@@ -1,0 +1,613 @@
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+
+<!Doctype html>
+<html id="docs" class="Resources">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"><!-- default styles.css on -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/callouts.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/tags.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/hover-anchors.css">
+    
+    
+    <!-- no custom css detected -->
+
+    
+    <meta name="description" content="Resources" />
+    
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/custom-jekyll/tags.js"></script>
+    <!-- no custom js detected -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Resources | Service Catalog - Kubernetes</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Resources" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes SIG Service Catalog" />
+<meta property="og:description" content="Kubernetes SIG Service Catalog" />
+<link rel="canonical" href="https://service-catalog.drycc.cc/docs/resources/" />
+<meta property="og:url" content="https://service-catalog.drycc.cc/docs/resources/" />
+<meta property="og:site_name" content="Service Catalog - Kubernetes" />
+<script type="application/ld+json">
+{"url":"https://service-catalog.drycc.cc/docs/resources/","@type":"WebPage","headline":"Resources","description":"Kubernetes SIG Service Catalog","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="https://service-catalog.drycc.cc/feed.xml" title="Service Catalog - Kubernetes" /> 
+</head>
+
+
+<body>
+
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+
+<header>
+    <a href="/" class="logo"></a>
+
+    <div class="nav-buttons" data-auto-burger="primary">
+        <ul class="global-nav">
+
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="https://github.com/drycc/service-catalog">GitHub</a></li>
+            <li><a href="/community">Community</a></li>
+        </ul>
+        <a href="/docs/walkthrough" class="button" id="tryKubernetes" data-auto-burger-exclude>Try Service Catalog</a>
+        <button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+    </div>
+
+    <nav id="mainNav">
+        <main data-auto-burger="primary">
+        <div class="nav-box">
+            <h3><a href="/docs/walkthrough">Get Started</a></h3>
+            <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs "Hello World" for Node.js.</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/docs/">Documentation</a></h3>
+            <p>Learn how to use Kubernetes with the use of walkthroughs, samples, and reference documentation. You can even <a href="/editdocs/" data-auto-burger-exclude>help contribute to the docs</a>!</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/community">Community</a></h3>
+            <p>If you need help, you can connect with other Kubernetes users and the Kubernetes authors, attend community events, and watch video presentations from around the web.</p>
+        </div>
+        </main>
+        <main data-auto-burger="primary">
+        <div class="left">
+            <h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+            <a href="https://github.com/kubernetes/kubernetes" class="button" data-auto-burger-exclude>View On Github</a>
+        </div>
+
+        <div class="right">
+            <h5 class="github-invite">Explore the community</h5>
+            <div class="social">
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+                <a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>Stack Overflow</span></a>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-users" class="mailing-list"><span>Mailing List</span></a>
+                <a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+            </div>
+        </div>
+        <div class="clear" style="clear: both"></div>
+        </main>
+    </nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+  <h1>Resources</h1>
+  <h5>Service Catalog Resources</h5>
+  <div id="vendorStrip" class="light-text">
+    <ul>
+      <li><a href="/docs/" >HOME</a></li>
+      <li><a href="/docs/concepts" >CONCEPTS</a></li>
+      <li><a href="/docs/tasks" >TASKS</a></li>
+      <li><a href="/docs/install" >INSTALL</a></li>
+      <li><a href="/docs/walkthrough" >WALKTHROUGH</a></li>
+      <li><a href="/docs/cli" >CLI</a></li>
+    </ul>
+    <div id="searchBox">
+      <input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)" autofocus="autofocus">
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="encyclopedia">
+  <div id="docsToc">
+        <div class="pi-accordion">
+          
+  
+
+    
+
+    
+      <a class="item" data-title="Resources" href="/docs/resources/"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Service Broker" href="#service-brokers"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Service Class" href="#service-classes"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Service Plans" href="#service-plans"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Instance" href="#serviceinstance"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Instance Parameters" href="#service-instance-parameters"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Binding" href="#servicebinding"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Secret" href="#whats-in-the-secrets"></a>
+    
+  
+
+
+        </div> <!-- /pi-accordion -->
+    <button class="push-menu-close-button" onclick="kub.toggleToc()"></button>
+  </div> <!-- /docsToc -->
+
+  <div id="docsContent">
+        <p><a href="/editdocs#docs/resources.md" id="editPageButton">Edit This Page</a></p>
+
+        
+          <h1>Resources</h1>
+        
+
+        <h1 id="service-catalog-resources">Service Catalog Resources</h1>
+
+<p>The Service Catalog resource model specifies all the behaviors that 
+Service Catalog supports. This document details each resource.</p>
+
+<p>All of these resources are also defined in Go code at
+<a href="https://github.com/drycc/service-catalog/blob/master/pkg/apis/servicecatalog/v1beta1/types.go"><code class="highlighter-rouge">pkg/apis/servicecatalog/v1beta1/types.go</code></a>.</p>
+
+<h2 id="service-brokers">Service Brokers</h2>
+
+<p>Before a Service can be used by an Application it must first be registered
+with the Kubernetes platform. Since Services are managed by Service Brokers
+we must first register the Service Broker by creating an instance of a
+<code class="highlighter-rouge">ClusterServiceBroker</code> or a <code class="highlighter-rouge">ServiceBroker</code>. These resources are similar, 
+however one is cluster-scoped and one is namespace-scoped.</p>
+
+<h3 id="clusterservicebroker">ClusterServiceBroker</h3>
+
+<p>If you would like to make a service broker available cluster wide, you register 
+the broker using a <code class="highlighter-rouge">ClusterServiceBroker</code> resource. This will result in Service Class 
+and Service Plan objects being created with a cluster-scope as well.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">kubectl create -f broker.yaml
+</span></code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">broker.yaml</code> looks similar to this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterServiceBroker</span>
+  <span class="s">metadata</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">broker-name</span>
+  <span class="na">spec</span><span class="pi">:</span>
+    <span class="na">url</span><span class="pi">:</span> <span class="s">http://broker-url.com</span>
+</code></pre></div></div>
+
+<h3 id="servicebroker">ServiceBroker</h3>
+
+<p>If you would like to make a service broker available to only a single namespace, you register 
+the broker using a <code class="highlighter-rouge">ServiceBroker</code> resource. This will result in Service Class 
+and Service Plan objects being created with a namespace-scope as well.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">kubectl create -f broker.yaml
+</span></code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">broker.yaml</code> looks similar to this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceBroker</span>
+  <span class="s">metadata</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">broker-name</span>
+    <span class="na">namespace</span><span class="pi">:</span> <span class="s">default</span>
+  <span class="na">spec</span><span class="pi">:</span>
+    <span class="na">url</span><span class="pi">:</span> <span class="s">http://broker-url.com</span>
+</code></pre></div></div>
+
+<h2 id="service-classes">Service Classes</h2>
+
+<p>After a Service Broker has been registered by creating either a <code class="highlighter-rouge">ClusterServiceBroker</code> or 
+<code class="highlighter-rouge">ServiceBroker</code>, the Service Catalog  will query the Service Broker (at the <code class="highlighter-rouge">url</code> specified) for the list
+of available Services (the catalog). Each Service will then have a corresponding
+<code class="highlighter-rouge">ClusterServiceClass</code> or <code class="highlighter-rouge">ServiceClass</code> resource created.</p>
+
+<h3 id="clusterserviceclass">ClusterServiceClass</h3>
+
+<p>After a <code class="highlighter-rouge">ClusterServiceBroker</code> resource is created, each service provided by the broker will then have a corresponding
+<code class="highlighter-rouge">ClusterServiceClass</code> resource created. These resources will also be cluster-scoped. A <code class="highlighter-rouge">ClusterServiceClass</code> looks similar to this example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ClusterServiceClass</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">4f6e6cf6-ffdd-425f-a2c7-3c9258ad2468</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">bindable</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">clusterServiceBrokerName</span><span class="pi">:</span> <span class="s">ups-broker</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s">A user provided service</span>
+  <span class="na">externalID</span><span class="pi">:</span> <span class="s">4f6e6cf6-ffdd-425f-a2c7-3c9258ad2468</span>
+  <span class="na">externalName</span><span class="pi">:</span> <span class="s">user-provided-service</span>
+  <span class="na">planUpdatable</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<h2 id="serviceclass">ServiceClass</h2>
+
+<p>After a <code class="highlighter-rouge">ServiceBroker</code> resource is created, each service provided by the broker will then have a corresponding
+<code class="highlighter-rouge">ServiceClass</code> resource created. These resources will also be namespaced-scoped. A <code class="highlighter-rouge">ServiceClass</code> looks similar to this example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceClass</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">4f6e6cf6-ffdd-425f-a2c7-3c9258ad2468</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">default</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">bindable</span><span class="pi">:</span> <span class="no">true</span>
+  <span class="na">serviceBrokerName</span><span class="pi">:</span> <span class="s">ups-broker</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s">A user provided service</span>
+  <span class="na">externalID</span><span class="pi">:</span> <span class="s">4f6e6cf6-ffdd-425f-a2c7-3c9258ad2468</span>
+  <span class="na">externalName</span><span class="pi">:</span> <span class="s">user-provided-service</span>
+  <span class="na">planUpdatable</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<h2 id="service-plans">Service Plans</h2>
+
+<p>Each Service Class has one or more Plans associated with it. Each
+<code class="highlighter-rouge">{ClusterServiceClass, ClusterServicePlan}</code> or <code class="highlighter-rouge">{ServiceClass, ServicePlan}</code> pair is the broker’s 
+service that we can provision. Plans generally indicate details like cost, performance, or 
+quality-of-service.</p>
+
+<h3 id="clusterserviceplan">ClusterServicePlan</h3>
+
+<p>For each plan of each <code class="highlighter-rouge">ClusterServiceClass</code>, a <code class="highlighter-rouge">ClusterServicePlan</code> will be created.</p>
+
+<h3 id="serviceplan">ServicePlan</h3>
+
+<p>For each plan of each <code class="highlighter-rouge">ServiceClass</code>, a <code class="highlighter-rouge">ServicePlan</code> will be created.</p>
+
+<h2 id="serviceinstance">ServiceInstance</h2>
+
+<p>Use a <code class="highlighter-rouge">ServiceInstance</code> to tell the broker to provision a new service. The 
+<code class="highlighter-rouge">ServiceInstance</code> can use either cluster-scoped or namespace-scoped Service Class 
+and Service Plan resources. When using <code class="highlighter-rouge">ServiceClass</code> and <code class="highlighter-rouge">ServicePlan</code>, the <code class="highlighter-rouge">ServiceInstance</code>
+must be in the same namespace.</p>
+
+<p>Create the <code class="highlighter-rouge">ServiceInstance</code>:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">kubectl create -f instance.yaml
+</span></code></pre></div></div>
+
+<p>where <code class="highlighter-rouge">instance.yaml</code> might look like:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceInstance</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">example-ns</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">test-database</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">clusterServiceClassExternalName</span><span class="pi">:</span> <span class="s">small-db</span>
+  <span class="na">clusterServicePlanExternalName</span><span class="pi">:</span> <span class="s">free</span>
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceInstance</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">default</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">test-database</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">serviceClassExternalName</span><span class="pi">:</span> <span class="s">small-db</span>
+  <span class="na">servicePlanExternalName</span><span class="pi">:</span> <span class="s">free</span>
+</code></pre></div></div>
+
+<h3 id="service-instance-parameters">Service Instance Parameters</h3>
+
+<p>Each <code class="highlighter-rouge">ServiceInstance</code> has a <code class="highlighter-rouge">parameters</code> field that you can add 
+metadata to. Service Catalog passes this metadata directly through to the
+service broker.</p>
+
+<p>You can pass this metadata in two different ways (you can pass both at the
+same time):</p>
+
+<ul>
+  <li>Including raw JSON (inline)</li>
+  <li>Referencing a Kubernetes <code class="highlighter-rouge">Secret</code></li>
+</ul>
+
+<p>If you reference a <code class="highlighter-rouge">Secret</code>, you must provide the secret name and a key.
+The key in the named secret must contain the JSON to pass to the broker.</p>
+
+<p>This JSON is merged with the inline JSON, but it is an error for two
+sets of parameters to include the same top-level JSON property name.</p>
+
+<p>If you reference a <code class="highlighter-rouge">Secret</code> in your <code class="highlighter-rouge">ServiceInstance</code>, and then the secret
+is updated with new parameters, Service Catalog will not update the broker with
+the new parameters.</p>
+
+<p>If you want to manually trigger an update after you’ve updated a <code class="highlighter-rouge">Secret</code>,
+you have to manually increment the <code class="highlighter-rouge">UpdateRequests</code> field in the
+<code class="highlighter-rouge">ServiceInstance</code>.</p>
+
+<p>For more information, see the documentation on <a href="/docs/parameters/">parameters</a>.</p>
+
+<h2 id="servicebinding">ServiceBinding</h2>
+
+<p><code class="highlighter-rouge">ServiceBinding</code> is the final resource that will be created in most
+workflows. This resource indicates that an application wants to connect
+to the service that was provisioned by a <code class="highlighter-rouge">ServiceInstance</code>.</p>
+
+<p>Create a <code class="highlighter-rouge">ServiceBinding</code>:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">kubectl create -f binding.yaml
+</span></code></pre></div></div>
+
+<p>where <code class="highlighter-rouge">binding.yaml</code> might look like:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceBinding</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">example-ns</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">test-database-binding</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">instanceRef</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">test-database</span>
+  <span class="na">secretName</span><span class="pi">:</span> <span class="s">db-secret</span>
+</code></pre></div></div>
+
+<p>After you create the <code class="highlighter-rouge">ServiceBinding</code>, Service Catalog will issue a bind
+request to the appropriate broker.</p>
+
+<p>When the broker responds, Service Catalog will write the credentials that it
+responds with into the secret you specified in <code class="highlighter-rouge">spec.secretName</code>. This
+secret will be in the same namespace as the <code class="highlighter-rouge">ServiceBinding</code>. If you leave
+<code class="highlighter-rouge">spec.SecretName</code> blank, the secret will be the same name as <code class="highlighter-rouge">metadata.name</code>.</p>
+
+<p>Most secrets will have credentials (username, password, etc…) and a
+hostname that your application can use to connect to the provisioned
+service.</p>
+
+<p>After Service Catalog creates the secret, just bind your application
+pods to it and start using the service.</p>
+
+<h2 id="whats-in-the-secrets">What’s in the Secrets?</h2>
+
+<p>The OSB API specification does not mandate what properties might appear
+in the Credentials, so make sure your application knows what to expect
+in the secret. Typically, the documentation for the broker will detail
+what it returns.</p>
+
+
+        
+           <a href="" onclick="window.open('https://github.com/drycc/service-catalog/issues/new?title=Issue%20with%20' +
+           'service-catalog.drycc.cc'+window.location.pathname)" class="button issue">Create an Issue</a>
+        
+        
+          <a href="/editdocs#docs/resources.md" class="button issue">Edit this Page</a>
+        
+    </div>
+</section>
+
+<footer col="12">
+    <main class="light-text">
+        <nav>
+            <a href="/docs/walkthrough">Get Started</a>
+            <a href="/docs/">Documentation</a>
+            <a href="/community">Community</a>
+        </nav>
+        <div class="social">
+            <div>
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="https://kubernetes.slack.com/messages/sig-service-catalog" class="slack"><span>Slack</span></a>
+            </div>
+            <div>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-sig-service-catalog" class="mailing-list"><span>Mailing List</span></a>
+            </div>
+            <div>
+                <a href="/docs/install" class="button">Get Service Catalog</a>
+                <a href="/docs/devguide" class="button">Contribute</a>
+            </div>
+        </div>
+        <div id="miceType" class="center">
+            &copy; 2022 The Kubernetes Authors | Documentation Distributed under <a href="/LICENSE" class="light-text">CC BY 4.0</a>
+        </div>
+        <div id="miceType" class="center">
+            Copyright &copy; 2022 The Linux Foundation&reg;. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" class="light-text">Trademark Usage page</a>
+        </div>
+    </main>
+</footer>
+
+<button class="flyout-button" onclick="kub.toggleToc()"></button>
+
+<style>
+.cse .gsc-control-cse, .gsc-control-cse, {
+    padding: 0;
+}
+  .gsc-control-cse table, .gsc-control-cse-en table {
+      margin:0px !important;
+  }
+  .gsc-above-wrapper-area {
+      border-bottom: 0;
+  }
+</style>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-36037335-10', 'auto');
+ga('send', 'pageview');
+
+// hide docs nav area if no nav is present, or if nav only contains a link to the current page
+/*(function () {
+    window.addEventListener('DOMContentLoaded', init)
+
+        // play nice with our neighbors
+        function init() {
+            window.removeEventListener('DOMContentLoaded', init)
+                hideNav()
+        }
+
+    function hideNav(toc){
+        if (!toc) toc = document.querySelector('#docsToc')
+        if (!toc) return
+            var container = toc.querySelector('.container')
+
+                // container is built dynamically, so it may not be present on the first runloop
+                if (container) {
+                    if (container.childElementCount === 0 || toc.querySelectorAll('a.item').length === 1) {
+                        toc.style.display = 'none'
+                            document.getElementById('docsContent').style.width = '100%'
+                    }
+                } else {
+                    requestAnimationFrame(function () {
+                        hideNav(toc)
+                    })
+                }
+    }
+})();*/
+</script>
+
+        <script>
+
+            $(function () {
+                'use strict';
+
+                /* selector */
+                var postHeader = 'h1,h2,h3,h4';
+
+                $(postHeader).filter('[id]').each(function () {
+                    var header      = $(this),
+                            headerID    = header.attr('id'),
+                            anchorClass = 'header-link',
+                            anchorIcon  = '<i class="octicon octicon-link" aria-hidden="true"></i>';
+
+                    if (headerID) {
+                        header.prepend($('<a />').addClass(anchorClass).attr({ 'href': '#' + headerID, 'aria-hidden': 'true' }).html(anchorIcon));
+                    }
+
+                    return this;
+                });
+            });
+
+
+        </script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+    <!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+
+
+</body>
+</html>

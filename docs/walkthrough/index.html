@@ -1,0 +1,896 @@
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+
+<!Doctype html>
+<html id="docs" class="Walkthrough">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"><!-- default styles.css on -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/callouts.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/tags.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/hover-anchors.css">
+    
+    
+    <!-- no custom css detected -->
+
+    
+    <meta name="description" content="Walkthrough" />
+    
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/custom-jekyll/tags.js"></script>
+    <!-- no custom js detected -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Walkthrough | Service Catalog - Kubernetes</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Walkthrough" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes SIG Service Catalog" />
+<meta property="og:description" content="Kubernetes SIG Service Catalog" />
+<link rel="canonical" href="https://service-catalog.drycc.cc/docs/walkthrough/" />
+<meta property="og:url" content="https://service-catalog.drycc.cc/docs/walkthrough/" />
+<meta property="og:site_name" content="Service Catalog - Kubernetes" />
+<script type="application/ld+json">
+{"url":"https://service-catalog.drycc.cc/docs/walkthrough/","@type":"WebPage","headline":"Walkthrough","description":"Kubernetes SIG Service Catalog","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="https://service-catalog.drycc.cc/feed.xml" title="Service Catalog - Kubernetes" /> 
+</head>
+
+
+<body>
+
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+
+<header>
+    <a href="/" class="logo"></a>
+
+    <div class="nav-buttons" data-auto-burger="primary">
+        <ul class="global-nav">
+
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="https://github.com/drycc/service-catalog">GitHub</a></li>
+            <li><a href="/community">Community</a></li>
+        </ul>
+        <a href="/docs/walkthrough" class="button" id="tryKubernetes" data-auto-burger-exclude>Try Service Catalog</a>
+        <button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+    </div>
+
+    <nav id="mainNav">
+        <main data-auto-burger="primary">
+        <div class="nav-box">
+            <h3><a href="/docs/walkthrough">Get Started</a></h3>
+            <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs "Hello World" for Node.js.</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/docs/">Documentation</a></h3>
+            <p>Learn how to use Kubernetes with the use of walkthroughs, samples, and reference documentation. You can even <a href="/editdocs/" data-auto-burger-exclude>help contribute to the docs</a>!</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/community">Community</a></h3>
+            <p>If you need help, you can connect with other Kubernetes users and the Kubernetes authors, attend community events, and watch video presentations from around the web.</p>
+        </div>
+        </main>
+        <main data-auto-burger="primary">
+        <div class="left">
+            <h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+            <a href="https://github.com/kubernetes/kubernetes" class="button" data-auto-burger-exclude>View On Github</a>
+        </div>
+
+        <div class="right">
+            <h5 class="github-invite">Explore the community</h5>
+            <div class="social">
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+                <a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>Stack Overflow</span></a>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-users" class="mailing-list"><span>Mailing List</span></a>
+                <a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+            </div>
+        </div>
+        <div class="clear" style="clear: both"></div>
+        </main>
+    </nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+  <h1>Walkthrough</h1>
+  <h5>Walkthrough setting up Service Catalog on a cluster and using a sample broker.</h5>
+  <div id="vendorStrip" class="light-text">
+    <ul>
+      <li><a href="/docs/" >HOME</a></li>
+      <li><a href="/docs/concepts" >CONCEPTS</a></li>
+      <li><a href="/docs/tasks" >TASKS</a></li>
+      <li><a href="/docs/install" >INSTALL</a></li>
+      <li><a href="/docs/walkthrough" class="YAH">WALKTHROUGH</a></li>
+      <li><a href="/docs/cli" >CLI</a></li>
+    </ul>
+    <div id="searchBox">
+      <input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)" autofocus="autofocus">
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="encyclopedia">
+  <div id="docsToc">
+        <div class="pi-accordion">
+          
+  
+
+    
+
+    
+      <a class="item" data-title="Walkthrough" href="/docs/walkthrough/"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="1 - Install a Broker" href="/docs/walkthrough/#step-1---installing-the-ups-broker-server"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="2 - Activate the Broker" href="/docs/walkthrough/#step-2---creating-a-clusterservicebroker-resource"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="3 - View Classes and Plans" href="/docs/walkthrough/#step-3---viewing-clusterserviceclasses-and-clusterserviceplans"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="4 - Create a Instance" href="/docs/walkthrough/#step-4---creating-a-new-serviceinstance"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="5 - Create a Binding" href="/docs/walkthrough/#step-5---requesting-a-servicebinding-to-use-the-serviceinstance"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="6 - Delete the Binding" href="/docs/walkthrough/#step-6---deleting-the-servicebinding"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="7 - Delete the Instance" href="/docs/walkthrough/#step-7---deleting-the-serviceinstance"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="8 - Delete the Broker" href="/docs/walkthrough/#step-8---deleting-the-clusterservicebroker"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="9 - Final Cleanup" href="/docs/walkthrough/#step-9---final-cleanup"></a>
+    
+  
+
+
+        </div> <!-- /pi-accordion -->
+    <button class="push-menu-close-button" onclick="kub.toggleToc()"></button>
+  </div> <!-- /docsToc -->
+
+  <div id="docsContent">
+        <p><a href="/editdocs#docs/walkthrough.md" id="editPageButton">Edit This Page</a></p>
+
+        
+          <h1>Walkthrough</h1>
+        
+
+        <p>This document assumes that you’ve installed Service Catalog onto your cluster.
+If you haven’t, please see the <a href="/docs/install/">installation instructions</a>. Optionally you may install
+the Service Catalog CLI, svcat. Examples for both svcat and kubectl are provided
+so that you may follow this walkthrough using svcat or using only kubectl.</p>
+
+<blockquote>
+  <p><strong>NOTE:</strong> Some commands in this document assume internet connectivity.</p>
+</blockquote>
+
+<p><a id="install"></a></p>
+
+<h1 id="step-1---installing-the-minibroker-server">Step 1 - Installing the minibroker Server</h1>
+
+<p>Since the Service Catalog provides a Kubernetes-native interface to an
+<a href="https://www.openservicebrokerapi.org/">Open Service Broker API</a> compatible broker
+server, we’ll need to install one in order to proceed with a demo.</p>
+
+<p>We plan on using the minibroker for demo purposes. The codebase for that broker is
+<a href="https://github.com/kubernetes-sigs/minibroker">here</a>.</p>
+
+<p>We’re going to deploy the minibroker to our Kubernetes cluster before
+proceeding, and we’ll do so with the minibroker helm chart. You can find details about the chart in the minibroker
+<a href="https://github.com/kubernetes-sigs/minibroker#install-minibroker">README</a>.</p>
+
+<p>Otherwise, to install with sensible defaults, run the following command:</p>
+
+<p><strong>NOTE:</strong> The walkthrough installs a cluster-wide Broker with the defaults from minibroker.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm repo add minibroker https://minibroker.blob.core.windows.net/charts
+</span></code></pre></div></div>
+<p>If you are using Helm v3, run this command:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm install minibroker minibroker/minibroker --namespace minibroker --create-namespace
+</span></code></pre></div></div>
+<p>For older versions of Helm, use the –name option:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm install --name minibroker --namespace minibroker minibroker/minibroker
+</span></code></pre></div></div>
+
+<h1 id="step-2---viewing-clusterserviceclasses-and-clusterserviceplans">Step 2 - Viewing ClusterServiceClasses and ClusterServicePlans</h1>
+
+<p>The controller created a <code class="highlighter-rouge">ClusterServiceClass</code> for each service that the minibroker
+provides. We can view the <code class="highlighter-rouge">ClusterServiceClass</code> resources available:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat get classes
+<span class="go">     NAME      NAMESPACE          DESCRIPTION         
++------------+-----------+---------------------------+
+  mariadb                  Helm Chart for mariadb     
+  mongodb                  Helm Chart for mongodb     
+  mysql                    Helm Chart for mysql       
+  postgresql               Helm Chart for postgresql  
+  redis                    Helm Chart for redis 
+
+</span><span class="gp">$</span> kubectl get clusterserviceclasses
+<span class="go">NAME         EXTERNAL-NAME   BROKER       AGE
+mariadb      mariadb         minibroker   5m50s
+mongodb      mongodb         minibroker   5m50s
+mysql        mysql           minibroker   5m50s
+postgresql   postgresql      minibroker   5m50s
+redis        redis           minibroker   5m50s
+</span></code></pre></div></div>
+
+<p><strong>NOTE:</strong> The above kubectl command uses a custom set of columns.  The <code class="highlighter-rouge">NAME</code> field is
+the Kubernetes name of the <code class="highlighter-rouge">ClusterServiceClass</code> and the <code class="highlighter-rouge">EXTERNAL NAME</code> field is the
+human-readable name for the service that the broker returns.</p>
+
+<p>The minibroker provides a service with the external name
+<code class="highlighter-rouge">mariadb</code>. View the details of this offering:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat describe class mariadb
+<span class="go">  Name:              mariadb                        
+  Scope:             cluster                        
+  Description:       Helm Chart for mariadb         
+  Kubernetes Name:   mariadb                        
+  Status:            Active                         
+  Tags:              mariadb, mysql, database, sql  
+  Broker:            minibroker                     
+
+Plans:
+        NAME                  DESCRIPTION            
++------------------+--------------------------------+
+  10-3-22            Fast, reliable, scalable,       
+                     and easy to use open-source     
+                     relational database system.     
+                     MariaDB Server is intended      
+                     for mission-critical,           
+                     heavy-load production systems   
+                     as well as for embedding into   
+                     mass-deployed software.         
+  10-1-28            Fast, reliable, scalable,       
+                     and easy to use open-source     
+                     relational database system.     
+                     MariaDB Server is intended      
+                     for mission-critical,           
+                     heavy-load production systems   
+                     as well as for embedding into   
+                     mass-deployed software. 
+</span><span class="c">.
+.
+.
+</span><span class="gp">$</span> kubectl get clusterserviceclasses mariadb <span class="nt">-o</span> yaml
+<span class="go">apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ClusterServiceClass
+metadata:
+  creationTimestamp: "2019-06-18T01:52:07Z"
+  name: mariadb
+  ownerReferences:
+  - apiVersion: servicecatalog.k8s.io/v1beta1
+    blockOwnerDeletion: false
+    controller: true
+    kind: ClusterServiceBroker
+    name: minibroker
+    uid: 6a9a047e-916b-11e9-bfe5-0242ac110008
+  resourceVersion: "9"
+  selfLink: /apis/servicecatalog.k8s.io/v1beta1/clusterserviceclasses/mariadb
+  uid: adf6e194-916b-11e9-bfe5-0242ac110008
+spec:
+  bindable: true
+  bindingRetrievable: false
+  clusterServiceBrokerName: minibroker
+  description: Helm Chart for mariadb
+  externalID: mariadb
+  externalName: mariadb
+  planUpdatable: false
+  tags:
+  - mariadb
+  - mysql
+  - database
+  - sql
+status:
+  removedFromBrokerCatalog: false
+</span></code></pre></div></div>
+
+<p>Additionally, the controller created a <code class="highlighter-rouge">ClusterServicePlan</code> for each of the
+plans for the broker’s services. We can view the <code class="highlighter-rouge">ClusterServicePlan</code>
+resources available in the cluster:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat get plans
+<span class="go">       NAME         NAMESPACE     CLASS                DESCRIPTION            
++------------------+-----------+------------+---------------------------------+
+  10-3-22                        mariadb      Fast, reliable, scalable,        
+                                              and easy to use open-source      
+                                              relational database system.      
+                                              MariaDB Server is intended       
+                                              for mission-critical,            
+                                              heavy-load production systems    
+                                              as well as for embedding into    
+                                              mass-deployed software.          
+  10-1-28                        mariadb      Fast, reliable, scalable,        
+                                              and easy to use open-source      
+                                              relational database system.      
+                                              MariaDB Server is intended       
+                                              for mission-critical,            
+                                              heavy-load production systems    
+                                              as well as for embedding into    
+                                              mass-deployed software.          
+</span><span class="c">.
+.
+.
+</span><span class="gp">$</span> kubectl get clusterserviceplans
+<span class="go">NAME                       EXTERNAL-NAME      BROKER       CLASS        AGE                                                                                                                                                                                                    
+mariadb-10-3-22            10-3-22            minibroker   mariadb      34m                                                                                                                                                                                                    
+mariadb-10-1-28            10-1-28            minibroker   mariadb      34m                                                                                                                                                                                                    
+mariadb-10-1-29            10-1-29            minibroker   mariadb      34m                                                                                                                                                                                                    
+mariadb-10-1-30            10-1-30            minibroker   mariadb      34m                                                                                                                                                                                                    
+mariadb-10-1-31            10-1-31            minibroker   mariadb      34m                                                                                                                                                                                                    
+mariadb-10-1-32            10-1-32            minibroker   mariadb      34m                                                                                                                                                                                                    
+mariadb-10-1-33            10-1-33            minibroker   mariadb      34m                                                                                                                                                                                                    
+mariadb-10-1-34            10-1-34            minibroker   mariadb      34m                                                                                                                                                                                                    
+mariadb-10-1-34-debian-9   10-1-34-debian-9   minibroker   mariadb      34m
+</span></code></pre></div></div>
+
+<p>You can view the details of a <code class="highlighter-rouge">ClusterServicePlan</code> with this command:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat describe plan 10-3-22 <span class="nt">--scope</span> cluster
+<span class="go">  Name:              10-3-22                                                                                                                                                                                                                 
+  Description:       Fast, reliable, scalable, and easy to use open-source relational database system. MariaDB Server is intended for mission-critical, heavy-load production systems as well as for embedding into mass-deployed software.  
+  Kubernetes Name:   mariadb-10-3-22                                                                                                                                                                                                         
+  Status:            Active                                                                                                                                                                                                                  
+  Free:              true                                                                                                                                                                                                                    
+  Class:             mariadb                                                                                                                                                                                                                 
+
+Instances:
+No instances defined
+
+</span><span class="gp">$</span> kubectl get clusterserviceplans mariadb-10-3-22 <span class="nt">-o</span> yaml
+<span class="go">apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ClusterServicePlan
+metadata:
+  creationTimestamp: "2019-06-18T03:32:31Z"
+  name: mariadb-10-3-22
+  ownerReferences:
+  - apiVersion: servicecatalog.k8s.io/v1beta1
+    blockOwnerDeletion: false
+    controller: true
+    kind: ClusterServiceBroker
+    name: minibroker
+    uid: 6ee99fc5-9179-11e9-8cb6-0242ac110009
+  resourceVersion: "28"
+  selfLink: /apis/servicecatalog.k8s.io/v1beta1/clusterserviceplans/mariadb-10-3-22
+  uid: b496eaf5-9179-11e9-8cb6-0242ac110009
+spec:
+  clusterServiceBrokerName: minibroker
+  clusterServiceClassRef:
+    name: mariadb
+  description: Fast, reliable, scalable, and easy to use open-source relational database
+    system. MariaDB Server is intended for mission-critical, heavy-load production
+    systems as well as for embedding into mass-deployed software.
+  externalID: mariadb-10-3-22
+  externalName: 10-3-22
+  free: true
+status:
+  removedFromBrokerCatalog: false
+</span></code></pre></div></div>
+
+<h1 id="step-4---creating-a-new-serviceinstance">Step 4 - Creating a New ServiceInstance</h1>
+
+<p>Now that a <code class="highlighter-rouge">ClusterServiceClass</code> named <code class="highlighter-rouge">mariadb</code> exists within our
+cluster’s service catalog, we can create a <code class="highlighter-rouge">ServiceInstance</code> that points to
+it.</p>
+
+<p>Unlike <code class="highlighter-rouge">ClusterServiceBroker</code> and <code class="highlighter-rouge">ClusterServiceClass</code> resources, <code class="highlighter-rouge">ServiceInstance</code>
+resources must be namespaced. Create a namespace with the following command:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> kubectl create namespace test-ns
+<span class="go">namespace "test-ns" created
+</span></code></pre></div></div>
+
+<p>Then, create the <code class="highlighter-rouge">ServiceInstance</code>:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> kubectl create <span class="nt">-f</span> https://raw.githubusercontent.com/kubernetes-sigs/service-catalog/master/contrib/examples/walkthrough/mini-instance.yaml
+<span class="go">serviceinstance.servicecatalog.k8s.io/mini-instance created
+</span></code></pre></div></div>
+
+<p>After the <code class="highlighter-rouge">ServiceInstance</code> is created, the service catalog controller will
+communicate with the appropriate broker server to initiate provisioning.
+Check the status of that process:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat describe instance <span class="nt">-n</span> test-ns mini-instance
+<span class="go">  Name:        mini-instance                                                                      
+  Namespace:   test-ns                                                                            
+  Status:      Ready - The instance was provisioned successfully @ 2019-06-18 02:42:55 +0000 UTC  
+  Class:       mariadb                                                                            
+  Plan:        10-3-22                                                                            
+
+Parameters:
+  param-1: value-1
+  param-2: value-2
+
+Bindings:
+No bindings defined
+
+</span><span class="gp">$</span> kubectl get serviceinstances <span class="nt">-n</span> test-ns mini-instance <span class="nt">-o</span> yaml
+<span class="go">apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  creationTimestamp: "2019-06-18T02:42:50Z"
+  finalizers:
+  - kubernetes-incubator/service-catalog
+  generation: 1
+  name: mini-instance
+  namespace: test-ns
+  resourceVersion: "93"
+  selfLink: /apis/servicecatalog.k8s.io/v1beta1/namespaces/test-ns/serviceinstances/mini-instance
+  uid: c3b56b7e-9172-11e9-bfe5-0242ac110008
+spec:
+  clusterServiceClassExternalName: mariadb
+  clusterServiceClassRef:
+    name: mariadb
+  clusterServicePlanExternalName: 10-3-22
+  clusterServicePlanRef:
+    name: mariadb-10-3-22
+  externalID: c3b56b2e-9172-11e9-bfe5-0242ac110008
+  parameters:
+    param-1: value-1
+    param-2: value-2
+  updateRequests: 0
+  userInfo:
+    groups:
+    - system:masters
+    - system:authenticated
+    uid: ""
+    username: minikube-user
+status:
+  asyncOpInProgress: false
+  conditions:
+  - lastTransitionTime: "2019-06-18T02:42:55Z"
+    message: The instance was provisioned successfully
+    reason: ProvisionedSuccessfully
+    status: "True"
+    type: Ready
+  deprovisionStatus: Required
+  externalProperties:
+    clusterServicePlanExternalID: mariadb-10-3-22
+    clusterServicePlanExternalName: 10-3-22
+    parameterChecksum: 4fa544b50ca7a33fe5e8bc0780f1f36aa0c2c7098242db27bc8a3e21f4b4ab55
+    parameters:
+      param-1: value-1
+      param-2: value-2
+    userInfo:
+      groups:
+      - system:masters
+      - system:authenticated
+      uid: ""
+      username: minikube-user
+  observedGeneration: 1
+  orphanMitigationInProgress: false
+  provisionStatus: Provisioned
+  reconciledGeneration: 1
+</span></code></pre></div></div>
+
+<h1 id="step-5---requesting-a-servicebinding-to-use-the-serviceinstance">Step 5 - Requesting a ServiceBinding to use the ServiceInstance</h1>
+
+<p>Now that our <code class="highlighter-rouge">ServiceInstance</code> has been created, we can bind to it.
+Create a <code class="highlighter-rouge">ServiceBinding</code> resource:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> kubectl create <span class="nt">-f</span> https://raw.githubusercontent.com/kubernetes-sigs/service-catalog/master/contrib/examples/walkthrough/mini-binding.yaml
+<span class="go">servicebinding.servicecatalog.k8s.io/mini-binding created
+</span></code></pre></div></div>
+
+<p>After the <code class="highlighter-rouge">ServiceBinding</code> resource is created, the service catalog controller will
+communicate with the appropriate broker server to initiate binding. Generally,
+this will cause the broker server to create and issue credentials that the
+service catalog controller will insert into a Kubernetes <code class="highlighter-rouge">Secret</code>. We can check
+the status of this process like so:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat describe binding <span class="nt">-n</span> test-ns mini-binding
+<span class="go">  Name:        mini-binding                                                  
+  Namespace:   test-ns                                                       
+  Status:      Ready - Injected bind result @ 2019-06-18 02:45:41 +0000 UTC  
+  Secret:      mini-binding                                                  
+  Instance:    mini-instance                                                 
+
+Parameters:
+  No parameters defined
+
+Secret Data:
+  Protocol                5 bytes   
+  host                    47 bytes  
+  mariadb-password        10 bytes  
+  mariadb-root-password   10 bytes  
+  password                10 bytes  
+  port                    4 bytes   
+  uri                     76 bytes  
+  username                4 bytes
+
+</span><span class="gp">$</span> kubectl get servicebindings <span class="nt">-n</span> test-ns mini-binding <span class="nt">-o</span> yaml
+<span class="go">apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceBinding
+metadata:
+  creationTimestamp: "2019-06-18T02:45:40Z"
+  finalizers:
+  - kubernetes-incubator/service-catalog
+  generation: 1
+  name: mini-binding
+  namespace: test-ns
+  resourceVersion: "97"
+  selfLink: /apis/servicecatalog.k8s.io/v1beta1/namespaces/test-ns/servicebindings/mini-binding
+  uid: 28d115b0-9173-11e9-bfe5-0242ac110008
+spec:
+  externalID: 28d11555-9173-11e9-bfe5-0242ac110008
+  instanceRef:
+    name: mini-instance
+  secretName: mini-binding
+  userInfo:
+    groups:
+    - system:masters
+    - system:authenticated
+    uid: ""
+    username: minikube-user
+status:
+  asyncOpInProgress: false
+  conditions:
+  - lastTransitionTime: "2019-06-18T02:45:41Z"
+    message: Injected bind result
+    reason: InjectedBindResult
+    status: "True"
+    type: Ready
+  externalProperties:
+    userInfo:
+      groups:
+      - system:masters
+      - system:authenticated
+      uid: ""
+      username: minikube-user
+  orphanMitigationInProgress: false
+  reconciledGeneration: 1
+  unbindStatus: Required
+</span></code></pre></div></div>
+
+<p>Notice that the status has a <code class="highlighter-rouge">Ready</code> condition set.  This means our binding is
+ready to use!  If we look at the <code class="highlighter-rouge">Secret</code>s in our <code class="highlighter-rouge">test-ns</code> namespace, we should
+see a new one:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> kubectl get secrets <span class="nt">-n</span> test-ns
+<span class="go">NAME                    TYPE                                  DATA   AGE
+default-token-n2j75     kubernetes.io/service-account-token   3      10m
+mini-binding            Opaque                                8      91s
+</span></code></pre></div></div>
+
+<p>Notice that a new <code class="highlighter-rouge">Secret</code> named <code class="highlighter-rouge">mini-binding</code> has been created.
+At this point,we could use this secret to connect the running MariaDB instance to our application running on Kubernetes.</p>
+
+<h1 id="step-6---deleting-the-servicebinding">Step 6 - Deleting the ServiceBinding</h1>
+
+<p>Now, let’s unbind the instance:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat unbind <span class="nt">-n</span> test-ns mini-instance
+<span class="go">deleted mini-binding
+</span></code></pre></div></div>
+
+<p>After the deletion is complete, we should see that the <code class="highlighter-rouge">Secret</code> is gone:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> kubectl get secrets <span class="nt">-n</span> test-ns
+<span class="go">NAME                    TYPE                                  DATA   AGE
+default-token-n2j75     kubernetes.io/service-account-token   3      11m
+</span></code></pre></div></div>
+
+<h1 id="step-7---deleting-the-serviceinstance">Step 7 - Deleting the ServiceInstance</h1>
+
+<p>Now, we can deprovision the instance:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat deprovision <span class="nt">-n</span> test-ns mini-instance
+<span class="go">deleted mini-instance
+</span></code></pre></div></div>
+
+<h1 id="step-8---deleting-the-clusterservicebroker">Step 8 - Deleting the ClusterServiceBroker</h1>
+
+<p>Next, we should remove the <code class="highlighter-rouge">ClusterServiceBroker</code> resource. This tells the service
+catalog to remove the broker’s services from the catalog. Do so with this
+command:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> kubectl delete clusterservicebrokers minibroker
+<span class="go">clusterservicebroker.servicecatalog.k8s.io "minibroker" deleted
+</span></code></pre></div></div>
+
+<p>We should then see that all the <code class="highlighter-rouge">ClusterServiceClass</code> resources that came from that
+broker have also been deleted:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> svcat get classes
+<span class="go">  NAME   NAMESPACE   DESCRIPTION
++------+-----------+-------------+
+
+</span><span class="gp">$</span> kubectl get clusterserviceclasses
+<span class="go">No resources found.
+</span></code></pre></div></div>
+
+<h1 id="step-9---final-cleanup">Step 9 - Final Cleanup</h1>
+
+<p>To clean up minibroker deployment, delete the helm release.</p>
+
+<p>If you are using Helm v3, run this command:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm delete minibroker
+</span></code></pre></div></div>
+<p>For older versions of Helm, use the –purge option:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm delete --purge minibroker
+</span></code></pre></div></div>
+
+<p>Then, delete all the namespaces we created:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">kubectl delete ns test-ns minibroker
+</span></code></pre></div></div>
+
+<h1 id="troubleshooting">Troubleshooting</h1>
+
+<h2 id="firewall-rules">Firewall rules</h2>
+
+<p>If you are using Google Cloud Platform, you may need to run the following
+command to setup proper firewall rules to allow your traffic get in.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">gcloud compute firewall-rules create allow-service-catalog-secure --allow tcp:30443 --description "Allow incoming traffic on 30443 port."
+</span></code></pre></div></div>
+
+
+        
+           <a href="" onclick="window.open('https://github.com/drycc/service-catalog/issues/new?title=Issue%20with%20' +
+           'service-catalog.drycc.cc'+window.location.pathname)" class="button issue">Create an Issue</a>
+        
+        
+          <a href="/editdocs#docs/walkthrough.md" class="button issue">Edit this Page</a>
+        
+    </div>
+</section>
+
+<footer col="12">
+    <main class="light-text">
+        <nav>
+            <a href="/docs/walkthrough">Get Started</a>
+            <a href="/docs/">Documentation</a>
+            <a href="/community">Community</a>
+        </nav>
+        <div class="social">
+            <div>
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="https://kubernetes.slack.com/messages/sig-service-catalog" class="slack"><span>Slack</span></a>
+            </div>
+            <div>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-sig-service-catalog" class="mailing-list"><span>Mailing List</span></a>
+            </div>
+            <div>
+                <a href="/docs/install" class="button">Get Service Catalog</a>
+                <a href="/docs/devguide" class="button">Contribute</a>
+            </div>
+        </div>
+        <div id="miceType" class="center">
+            &copy; 2022 The Kubernetes Authors | Documentation Distributed under <a href="/LICENSE" class="light-text">CC BY 4.0</a>
+        </div>
+        <div id="miceType" class="center">
+            Copyright &copy; 2022 The Linux Foundation&reg;. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" class="light-text">Trademark Usage page</a>
+        </div>
+    </main>
+</footer>
+
+<button class="flyout-button" onclick="kub.toggleToc()"></button>
+
+<style>
+.cse .gsc-control-cse, .gsc-control-cse, {
+    padding: 0;
+}
+  .gsc-control-cse table, .gsc-control-cse-en table {
+      margin:0px !important;
+  }
+  .gsc-above-wrapper-area {
+      border-bottom: 0;
+  }
+</style>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-36037335-10', 'auto');
+ga('send', 'pageview');
+
+// hide docs nav area if no nav is present, or if nav only contains a link to the current page
+/*(function () {
+    window.addEventListener('DOMContentLoaded', init)
+
+        // play nice with our neighbors
+        function init() {
+            window.removeEventListener('DOMContentLoaded', init)
+                hideNav()
+        }
+
+    function hideNav(toc){
+        if (!toc) toc = document.querySelector('#docsToc')
+        if (!toc) return
+            var container = toc.querySelector('.container')
+
+                // container is built dynamically, so it may not be present on the first runloop
+                if (container) {
+                    if (container.childElementCount === 0 || toc.querySelectorAll('a.item').length === 1) {
+                        toc.style.display = 'none'
+                            document.getElementById('docsContent').style.width = '100%'
+                    }
+                } else {
+                    requestAnimationFrame(function () {
+                        hideNav(toc)
+                    })
+                }
+    }
+})();*/
+</script>
+
+        <script>
+
+            $(function () {
+                'use strict';
+
+                /* selector */
+                var postHeader = 'h1,h2,h3,h4';
+
+                $(postHeader).filter('[id]').each(function () {
+                    var header      = $(this),
+                            headerID    = header.attr('id'),
+                            anchorClass = 'header-link',
+                            anchorIcon  = '<i class="octicon octicon-link" aria-hidden="true"></i>';
+
+                    if (headerID) {
+                        header.prepend($('<a />').addClass(anchorClass).attr({ 'href': '#' + headerID, 'aria-hidden': 'true' }).html(anchorIcon));
+                    }
+
+                    return this;
+                });
+            });
+
+
+        </script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+    <!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+
+
+</body>
+</html>

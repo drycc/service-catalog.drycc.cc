@@ -1,0 +1,586 @@
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+
+<!Doctype html>
+<html id="docs" class="Install">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"><!-- default styles.css on -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/callouts.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/tags.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/hover-anchors.css">
+    
+    
+    <!-- no custom css detected -->
+
+    
+    <meta name="description" content="Install" />
+    
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/custom-jekyll/tags.js"></script>
+    <!-- no custom js detected -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Install | Service Catalog - Kubernetes</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Install" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes SIG Service Catalog" />
+<meta property="og:description" content="Kubernetes SIG Service Catalog" />
+<link rel="canonical" href="https://service-catalog.drycc.cc/docs/install/" />
+<meta property="og:url" content="https://service-catalog.drycc.cc/docs/install/" />
+<meta property="og:site_name" content="Service Catalog - Kubernetes" />
+<script type="application/ld+json">
+{"url":"https://service-catalog.drycc.cc/docs/install/","@type":"WebPage","headline":"Install","description":"Kubernetes SIG Service Catalog","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="https://service-catalog.drycc.cc/feed.xml" title="Service Catalog - Kubernetes" /> 
+</head>
+
+
+<body>
+
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+
+<header>
+    <a href="/" class="logo"></a>
+
+    <div class="nav-buttons" data-auto-burger="primary">
+        <ul class="global-nav">
+
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="https://github.com/drycc/service-catalog">GitHub</a></li>
+            <li><a href="/community">Community</a></li>
+        </ul>
+        <a href="/docs/walkthrough" class="button" id="tryKubernetes" data-auto-burger-exclude>Try Service Catalog</a>
+        <button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+    </div>
+
+    <nav id="mainNav">
+        <main data-auto-burger="primary">
+        <div class="nav-box">
+            <h3><a href="/docs/walkthrough">Get Started</a></h3>
+            <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs "Hello World" for Node.js.</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/docs/">Documentation</a></h3>
+            <p>Learn how to use Kubernetes with the use of walkthroughs, samples, and reference documentation. You can even <a href="/editdocs/" data-auto-burger-exclude>help contribute to the docs</a>!</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/community">Community</a></h3>
+            <p>If you need help, you can connect with other Kubernetes users and the Kubernetes authors, attend community events, and watch video presentations from around the web.</p>
+        </div>
+        </main>
+        <main data-auto-burger="primary">
+        <div class="left">
+            <h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+            <a href="https://github.com/kubernetes/kubernetes" class="button" data-auto-burger-exclude>View On Github</a>
+        </div>
+
+        <div class="right">
+            <h5 class="github-invite">Explore the community</h5>
+            <div class="social">
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+                <a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>Stack Overflow</span></a>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-users" class="mailing-list"><span>Mailing List</span></a>
+                <a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+            </div>
+        </div>
+        <div class="clear" style="clear: both"></div>
+        </main>
+    </nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+  <h1>Install</h1>
+  <h5>Instructions for installing Service Catalog on a Cluster.</h5>
+  <div id="vendorStrip" class="light-text">
+    <ul>
+      <li><a href="/docs/" >HOME</a></li>
+      <li><a href="/docs/concepts" >CONCEPTS</a></li>
+      <li><a href="/docs/tasks" >TASKS</a></li>
+      <li><a href="/docs/install" class="YAH">INSTALL</a></li>
+      <li><a href="/docs/walkthrough" >WALKTHROUGH</a></li>
+      <li><a href="/docs/cli" >CLI</a></li>
+    </ul>
+    <div id="searchBox">
+      <input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)" autofocus="autofocus">
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="encyclopedia">
+  <div id="docsToc">
+        <div class="pi-accordion">
+          
+  
+
+    
+
+    
+      <a class="item" data-title="Install" href="/docs/install/"></a>
+    
+  
+
+  
+    <div class="item" data-title="Step 1 - Prerequisites">
+      <div class="container">
+        
+  
+
+    
+
+    
+      <a class="item" data-title="Kubernetes" href="#kubernetes-version"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="In-Cluster DNS" href="#in-cluster-dns"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Helm" href="#helm"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="RBAC" href="#rbac"></a>
+    
+  
+
+
+      </div>
+    </div>
+  
+
+  
+    <div class="item" data-title="Step 2 - Install Service Catalog">
+      <div class="container">
+        
+  
+
+    
+
+    
+      <a class="item" data-title="Service Catalog Server" href="#step-2---install-service-catalog"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Service Catalog Client" href="#installing-the-service-catalog-cli"></a>
+    
+  
+
+
+      </div>
+    </div>
+  
+
+
+        </div> <!-- /pi-accordion -->
+    <button class="push-menu-close-button" onclick="kub.toggleToc()"></button>
+  </div> <!-- /docsToc -->
+
+  <div id="docsContent">
+        <p><a href="/editdocs#docs/install.md" id="editPageButton">Edit This Page</a></p>
+
+        
+          <h1>Install</h1>
+        
+
+        <p>Starting from version 0.3.x, Service Catalog uses <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks">Admission Webhooks</a>
+to manage custom resources. It uses <a href="https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#additional-printer-columns">Additional Printer Columns</a>
+so you can use <code class="highlighter-rouge">kubectl</code> to interact with Service Catalog.</p>
+
+<p>The rest of this document details how to:</p>
+
+<ul>
+  <li>Set up Service Catalog on your cluster</li>
+  <li>Interact with the Service Catalog API</li>
+</ul>
+
+<h1 id="step-1---prerequisites">Step 1 - Prerequisites</h1>
+
+<h2 id="kubernetes-version">Kubernetes Version</h2>
+
+<p>Service Catalog requires a Kubernetes cluster v1.13 or later. You’ll also need a
+<a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">Kubernetes configuration file</a>
+installed on your host. You need this file so you can use <code class="highlighter-rouge">kubectl</code> and
+<a href="https://helm.sh"><code class="highlighter-rouge">helm</code></a> to communicate with the cluster. Many Kubernetes installation
+tools and/or cloud providers will set this configuration file up for you. Please
+check with your tool or provider for details.</p>
+
+<h3 id="kubectl-version"><code class="highlighter-rouge">kubectl</code> Version</h3>
+
+<p>Most interaction with the service catalog system is achieved through the
+<code class="highlighter-rouge">kubectl</code> command line interface. As with the cluster version, Service Catalog
+requires <code class="highlighter-rouge">kubectl</code> version 1.13 or newer.</p>
+
+<p>First, check your version of <code class="highlighter-rouge">kubectl</code>:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">kubectl version
+</span></code></pre></div></div>
+
+<p>Ensure that the server version and client versions are both <code class="highlighter-rouge">1.13</code> or above.</p>
+
+<p>If you need to upgrade your client, follow the
+<a href="https://kubernetes.io/docs/tasks/kubectl/install/">installation instructions</a>
+to get a new <code class="highlighter-rouge">kubectl</code> binary.</p>
+
+<p>For example, run the following command to get an up-to-date binary on Mac OS:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">curl -LO https://storage.googleapis.com/kubernetes-release/release/$</span><span class="o">(</span>curl <span class="nt">-s</span> https://storage.googleapis.com/kubernetes-release/release/stable.txt<span class="o">)</span>/bin/darwin/amd64/kubectl
+<span class="go">chmod +x ./kubectl
+</span></code></pre></div></div>
+
+<h2 id="in-cluster-dns">In-Cluster DNS</h2>
+
+<p>You’ll need a Kubernetes installation with in-cluster DNS enabled. Most popular
+installation methods will automatically configure in-cluster DNS for you:</p>
+
+<ul>
+  <li><a href="https://github.com/kubernetes/minikube">Minikube</a></li>
+  <li><a href="https://github.com/kubernetes/kubernetes/blob/master/hack/local-up-cluster.sh"><code class="highlighter-rouge">hack/local-up-cluster.sh</code></a>
+(in the Kubernetes repository)</li>
+  <li>Most cloud providers</li>
+</ul>
+
+<h2 id="storage">Storage</h2>
+
+<p>Service Catalog uses CRDs to store information.</p>
+
+<h2 id="helm">Helm</h2>
+
+<p>You’ll install Service Catalog with <a href="http://helm.sh/">Helm</a>, and you’ll need
+v3.4.0 or newer for that. See the steps below to install.</p>
+
+<h2 id="helm-repository-setup">Helm Repository Setup</h2>
+
+<p>Service Catalog is easily installed via a
+<a href="https://github.com/kubernetes/helm/blob/master/docs/charts.md">Helm chart</a>.</p>
+
+<p>This chart is located in a
+<a href="https://github.com/kubernetes/helm/blob/master/docs/chart_repository.md">chart repository</a>
+just for Service Catalog. Add this repository to your local machine:</p>
+
+<p>For stable charts:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm repo add drycc https://charts.drycc.cc/stable/catalog
+</span></code></pre></div></div>
+
+<p>For testing charts:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm repo add drycc https://charts.drycc.cc/testing/catalog
+</span></code></pre></div></div>
+
+<p>Then, ensure that the repository was successfully added:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm search repo service-catalog
+</span></code></pre></div></div>
+
+<p>You should see the following output:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">NAME                         VERSION    DESCRIPTION
+drycc/catalog              0.3.X      service-catalog helm chart
+</span></code></pre></div></div>
+
+<h2 id="rbac">RBAC</h2>
+
+<p>Your Kubernetes cluster must have
+<a href="https://kubernetes.io/docs/admin/authorization/rbac/">RBAC</a> enabled to use
+Service Catalog.</p>
+
+<p>Like in-cluster DNS, many installation methods should enable RBAC for you.</p>
+
+<h3 id="minikube">Minikube</h3>
+
+<p>When using Minikube v0.25 or older, you must run Minikube with RBAC explicitly
+enabled:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>minikube start --extra-config=apiserver.Authorization.Mode=RBAC
+</code></pre></div></div>
+
+<p>When using Minikube v0.26+, run the following command:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>minikube start
+</code></pre></div></div>
+
+<p>With Minikube v0.26+, do not specify <code class="highlighter-rouge">--extra-config</code>. The
+flag has since been changed to <code class="highlighter-rouge">--extra-config=apiserver.authorization-mode</code> and
+Minikube now uses RBAC by default. Specifying the older flag may cause the
+start command to hang.</p>
+
+<h3 id="hacklocal-cluster-upsh"><code class="highlighter-rouge">hack/local-cluster-up.sh</code></h3>
+
+<p>If you are using the
+<a href="https://github.com/kubernetes/kubernetes/blob/master/hack/local-up-cluster.sh"><code class="highlighter-rouge">hack/local-up-cluster.sh</code></a>
+script in the Kubernetes core repository, start your cluster with this command:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">AUTHORIZATION_MODE=Node,RBAC hack/local-up-cluster.sh -O
+</span></code></pre></div></div>
+
+<h3 id="cloud-providers">Cloud Providers</h3>
+
+<p>Many cloud providers set up new clusters with RBAC enabled for you. Please
+check with your provider’s documentation for details.</p>
+
+<h1 id="step-2---install-service-catalog">Step 2 - Install Service Catalog</h1>
+
+<p>Now that your cluster and Helm are configured properly, installing
+Service Catalog is simple:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">helm install catalog drycc/catalog --namespace catalog --create-namespace
+</span></code></pre></div></div>
+
+<h1 id="installing-the-service-catalog-cli">Installing the Service Catalog CLI</h1>
+
+<p>Follow the appropriate instructions for your operating system to install svcat. The binary can be used by itself, or as a kubectl plugin.</p>
+
+<p>The snippets below install the latest version of svcat. We publish binaries for our release builds.</p>
+
+<h2 id="macos-with-homebrew">MacOS with Homebrew</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew update
+brew install kubernetes-service-catalog-client
+</code></pre></div></div>
+
+<h2 id="macos">MacOS</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -sLO https://download.svcat.sh/cli/latest/darwin/amd64/svcat
+chmod +x ./svcat
+mv ./svcat /usr/local/bin/
+svcat version --client
+</code></pre></div></div>
+
+<h2 id="linux">Linux</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -sLO https://download.svcat.sh/cli/latest/linux/amd64/svcat
+chmod +x ./svcat
+mv ./svcat /usr/local/bin/
+svcat version --client
+</code></pre></div></div>
+
+<h2 id="windows">Windows</h2>
+
+<p>The PowerShell snippet below adds a directory to your PATH for the current session only.
+You will need to find a permanent location for it and add it to your PATH.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iwr 'https://download.svcat.sh/cli/latest/windows/amd64/svcat.exe' -UseBasicParsing -OutFile svcat.exe
+mkdir -f ~\bin
+Move-Item -Path svcat.exe  -Destination ~\bin
+$env:PATH += ";${pwd}\bin"
+svcat version --client
+</code></pre></div></div>
+
+<h2 id="manual">Manual</h2>
+<ol>
+  <li>Download the appropriate binary for your operating system:
+    <ul>
+      <li>macOS: https://download.svcat.sh/cli/latest/darwin/amd64/svcat</li>
+      <li>Windows: https://download.svcat.sh/cli/latest/windows/amd64/svcat.exe</li>
+      <li>Linux: https://download.svcat.sh/cli/latest/linux/amd64/svcat</li>
+    </ul>
+  </li>
+  <li>Make the binary executable.</li>
+  <li>Move the binary to a directory on your PATH.</li>
+</ol>
+
+<h2 id="plugin">Plugin</h2>
+<p>To use svcat as a plugin, run the following command after downloading:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span> ./svcat install plugin
+<span class="go">Plugin has been installed to ~/.kube/plugins/svcat. Run kubectl plugin svcat --help for help using the plugin.
+</span></code></pre></div></div>
+
+<p>When operating as a plugin, the commands are the same with the addition of the global
+kubectl configuration flags. One exception is that boolean flags aren’t supported
+when running in plugin mode, so instead of using <code class="highlighter-rouge">--flag</code> you must specify a value <code class="highlighter-rouge">--flag=true</code>.</p>
+
+
+        
+           <a href="" onclick="window.open('https://github.com/drycc/service-catalog/issues/new?title=Issue%20with%20' +
+           'service-catalog.drycc.cc'+window.location.pathname)" class="button issue">Create an Issue</a>
+        
+        
+          <a href="/editdocs#docs/install.md" class="button issue">Edit this Page</a>
+        
+    </div>
+</section>
+
+<footer col="12">
+    <main class="light-text">
+        <nav>
+            <a href="/docs/walkthrough">Get Started</a>
+            <a href="/docs/">Documentation</a>
+            <a href="/community">Community</a>
+        </nav>
+        <div class="social">
+            <div>
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="https://kubernetes.slack.com/messages/sig-service-catalog" class="slack"><span>Slack</span></a>
+            </div>
+            <div>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-sig-service-catalog" class="mailing-list"><span>Mailing List</span></a>
+            </div>
+            <div>
+                <a href="/docs/install" class="button">Get Service Catalog</a>
+                <a href="/docs/devguide" class="button">Contribute</a>
+            </div>
+        </div>
+        <div id="miceType" class="center">
+            &copy; 2022 The Kubernetes Authors | Documentation Distributed under <a href="/LICENSE" class="light-text">CC BY 4.0</a>
+        </div>
+        <div id="miceType" class="center">
+            Copyright &copy; 2022 The Linux Foundation&reg;. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" class="light-text">Trademark Usage page</a>
+        </div>
+    </main>
+</footer>
+
+<button class="flyout-button" onclick="kub.toggleToc()"></button>
+
+<style>
+.cse .gsc-control-cse, .gsc-control-cse, {
+    padding: 0;
+}
+  .gsc-control-cse table, .gsc-control-cse-en table {
+      margin:0px !important;
+  }
+  .gsc-above-wrapper-area {
+      border-bottom: 0;
+  }
+</style>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-36037335-10', 'auto');
+ga('send', 'pageview');
+
+// hide docs nav area if no nav is present, or if nav only contains a link to the current page
+/*(function () {
+    window.addEventListener('DOMContentLoaded', init)
+
+        // play nice with our neighbors
+        function init() {
+            window.removeEventListener('DOMContentLoaded', init)
+                hideNav()
+        }
+
+    function hideNav(toc){
+        if (!toc) toc = document.querySelector('#docsToc')
+        if (!toc) return
+            var container = toc.querySelector('.container')
+
+                // container is built dynamically, so it may not be present on the first runloop
+                if (container) {
+                    if (container.childElementCount === 0 || toc.querySelectorAll('a.item').length === 1) {
+                        toc.style.display = 'none'
+                            document.getElementById('docsContent').style.width = '100%'
+                    }
+                } else {
+                    requestAnimationFrame(function () {
+                        hideNav(toc)
+                    })
+                }
+    }
+})();*/
+</script>
+
+        <script>
+
+            $(function () {
+                'use strict';
+
+                /* selector */
+                var postHeader = 'h1,h2,h3,h4';
+
+                $(postHeader).filter('[id]').each(function () {
+                    var header      = $(this),
+                            headerID    = header.attr('id'),
+                            anchorClass = 'header-link',
+                            anchorIcon  = '<i class="octicon octicon-link" aria-hidden="true"></i>';
+
+                    if (headerID) {
+                        header.prepend($('<a />').addClass(anchorClass).attr({ 'href': '#' + headerID, 'aria-hidden': 'true' }).html(anchorIcon));
+                    }
+
+                    return this;
+                });
+            });
+
+
+        </script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+    <!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+
+
+</body>
+</html>

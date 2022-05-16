@@ -1,0 +1,541 @@
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+
+<!Doctype html>
+<html id="docs" class="Documentation">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"><!-- default styles.css on -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/callouts.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/tags.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/hover-anchors.css">
+    
+    
+    <!-- no custom css detected -->
+
+    
+    <meta name="description" content="Parameters" />
+    
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/custom-jekyll/tags.js"></script>
+    <!-- no custom js detected -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Parameters | Service Catalog - Kubernetes</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Parameters" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes SIG Service Catalog" />
+<meta property="og:description" content="Kubernetes SIG Service Catalog" />
+<link rel="canonical" href="https://service-catalog.drycc.cc/docs/parameters/" />
+<meta property="og:url" content="https://service-catalog.drycc.cc/docs/parameters/" />
+<meta property="og:site_name" content="Service Catalog - Kubernetes" />
+<script type="application/ld+json">
+{"url":"https://service-catalog.drycc.cc/docs/parameters/","@type":"WebPage","headline":"Parameters","description":"Kubernetes SIG Service Catalog","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="https://service-catalog.drycc.cc/feed.xml" title="Service Catalog - Kubernetes" /> 
+</head>
+
+
+<body>
+
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+
+<header>
+    <a href="/" class="logo"></a>
+
+    <div class="nav-buttons" data-auto-burger="primary">
+        <ul class="global-nav">
+
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="https://github.com/drycc/service-catalog">GitHub</a></li>
+            <li><a href="/community">Community</a></li>
+        </ul>
+        <a href="/docs/walkthrough" class="button" id="tryKubernetes" data-auto-burger-exclude>Try Service Catalog</a>
+        <button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+    </div>
+
+    <nav id="mainNav">
+        <main data-auto-burger="primary">
+        <div class="nav-box">
+            <h3><a href="/docs/walkthrough">Get Started</a></h3>
+            <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs "Hello World" for Node.js.</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/docs/">Documentation</a></h3>
+            <p>Learn how to use Kubernetes with the use of walkthroughs, samples, and reference documentation. You can even <a href="/editdocs/" data-auto-burger-exclude>help contribute to the docs</a>!</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/community">Community</a></h3>
+            <p>If you need help, you can connect with other Kubernetes users and the Kubernetes authors, attend community events, and watch video presentations from around the web.</p>
+        </div>
+        </main>
+        <main data-auto-burger="primary">
+        <div class="left">
+            <h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+            <a href="https://github.com/kubernetes/kubernetes" class="button" data-auto-burger-exclude>View On Github</a>
+        </div>
+
+        <div class="right">
+            <h5 class="github-invite">Explore the community</h5>
+            <div class="social">
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+                <a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>Stack Overflow</span></a>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-users" class="mailing-list"><span>Mailing List</span></a>
+                <a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+            </div>
+        </div>
+        <div class="clear" style="clear: both"></div>
+        </main>
+    </nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+  <h1>Documentation</h1>
+  <h5>Documentation for using and learning about Service Catalog.</h5>
+  <div id="vendorStrip" class="light-text">
+    <ul>
+      <li><a href="/docs/" >HOME</a></li>
+      <li><a href="/docs/concepts" >CONCEPTS</a></li>
+      <li><a href="/docs/tasks" >TASKS</a></li>
+      <li><a href="/docs/install" >INSTALL</a></li>
+      <li><a href="/docs/walkthrough" >WALKTHROUGH</a></li>
+      <li><a href="/docs/cli" >CLI</a></li>
+    </ul>
+    <div id="searchBox">
+      <input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)" autofocus="autofocus">
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="encyclopedia">
+  <div id="docsToc">
+        <div class="pi-accordion">
+          
+  
+
+    
+
+    
+      <a class="item" data-title="Documentation" href="/docs/"></a>
+    
+  
+
+
+        </div> <!-- /pi-accordion -->
+    <button class="push-menu-close-button" onclick="kub.toggleToc()"></button>
+  </div> <!-- /docsToc -->
+
+  <div id="docsContent">
+        <p><a href="/editdocs#docs/parameters.md" id="editPageButton">Edit This Page</a></p>
+
+        
+          <h1>Parameters</h1>
+        
+
+        <h1 id="passing-parameters-to-brokers">Passing parameters to brokers</h1>
+
+<p>Table of Contents</p>
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#design">Design</a>
+    <ul>
+      <li><a href="#basic-example">Basic example</a></li>
+      <li><a href="#passing-parameters-as-an-inline-json">Passing parameters as an inline JSON</a></li>
+      <li><a href="#referencing-sensitive-data-stored-in-secret">Referencing sensitive data stored in secrets</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+<p><code class="highlighter-rouge">parameters</code> and <code class="highlighter-rouge">parametersFrom</code> properties of <code class="highlighter-rouge">ServiceInstance</code> and <code class="highlighter-rouge">ServiceBinding</code> resources 
+provide support for passing parameters to the broker relevant to the corresponding
+<a href="https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#provisioning">provisioning</a> or
+<a href="https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md#binding">binding</a> request. 
+The resulting structure represents an arbitrary JSON object, which is assumed to 
+be valid for a particular broker. 
+The Service Catalog does not enforce any extra limitations on the format and content 
+of this structure.</p>
+
+<h2 id="design">Design</h2>
+
+<p>To set input parameters, you may use the <code class="highlighter-rouge">parameters</code> and <code class="highlighter-rouge">parametersFrom</code> 
+fields in the <code class="highlighter-rouge">spec</code> field of the <code class="highlighter-rouge">ServiceInstance</code> or <code class="highlighter-rouge">ServiceBinding</code> resource:</p>
+<ul>
+  <li><code class="highlighter-rouge">parameters</code> : can be used to specify a set of properties to be sent to the 
+broker. The data specified will be passed “as-is” to the broker without any 
+modifications - aside from converting it to JSON for transmission to the broker 
+in the case of the <code class="highlighter-rouge">spec</code> field being specified as <code class="highlighter-rouge">YAML</code>. Any valid <code class="highlighter-rouge">YAML</code> or 
+<code class="highlighter-rouge">JSON</code> constructs are supported. One only parameters field may be specified per
+<code class="highlighter-rouge">spec</code>.</li>
+  <li><code class="highlighter-rouge">parametersFrom</code> : can be used to specify which secret, and key in that secret, 
+which contains a <code class="highlighter-rouge">string</code> that represents the json to include in the set of 
+parameters to be sent to the broker. The <code class="highlighter-rouge">parametersFrom</code> field is a list which 
+supports multiple sources referenced per <code class="highlighter-rouge">spec</code>.</li>
+</ul>
+
+<p>You may use either, or both, of these fields as needed.</p>
+
+<p>If multiple sources in <code class="highlighter-rouge">parameters</code> and <code class="highlighter-rouge">parametersFrom</code> blocks are specified,
+the final payload is a result of merging all of them at the top level.
+If there are any duplicate properties defined at the top level, the specification
+is considered to be invalid, the further processing of the <code class="highlighter-rouge">ServiceInstance</code>/<code class="highlighter-rouge">ServiceBinding</code>
+resource stops and its <code class="highlighter-rouge">status</code> is marked with error condition.</p>
+
+<p>The format of the <code class="highlighter-rouge">spec</code> will be (in YAML format):</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="s">...</span>
+  <span class="s">parameters</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">value</span>
+  <span class="na">parametersFrom</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">secretKeyRef</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">my-secret</span>
+        <span class="na">key</span><span class="pi">:</span> <span class="s">secret-parameter</span>
+</code></pre></div></div>
+<p>or, in JSON format</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"parametersFrom"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"secretKeyRef"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-secret"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"secret-parameter"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>and the secret would need to have a key named secret-parameter:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Secret</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">my-secret</span>
+<span class="na">type</span><span class="pi">:</span> <span class="s">Opaque</span>
+<span class="na">stringData</span><span class="pi">:</span>
+  <span class="na">secret-parameter</span><span class="pi">:</span>
+    <span class="s1">'</span><span class="s">{</span>
+      <span class="s">"password":</span><span class="nv"> </span><span class="s">"letmein"</span>
+    <span class="s">}'</span>
+</code></pre></div></div>
+<p>The final JSON payload to be sent to the broker would then look like:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"letmein"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Multiple parameters could be listed in the secret - simply separate key/value pairs with a comma as in this example:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="na">secret-parameter</span><span class="pi">:</span>
+    <span class="s1">'</span><span class="s">{</span>
+      <span class="s">"password":</span><span class="nv"> </span><span class="s">"letmein",</span>
+      <span class="s">"key2":</span><span class="nv"> </span><span class="s">"value2",</span>
+      <span class="s">"key3":</span><span class="nv"> </span><span class="s">"value3"</span>
+    <span class="s">}'</span>
+</code></pre></div></div>
+
+<h3 id="basic-example">Basic example</h3>
+
+<p>Let’s say we want to create a <code class="highlighter-rouge">ServiceInstance</code> of EC2 running on AWS using a
+<a href="https://github.com/cloudfoundry-samples/go_service_broker">corresponding broker</a> 
+which implements the Open Service Broker API.</p>
+
+<p>A typical provisioning request for this broker looks <a href="https://github.com/cloudfoundry-samples/go_service_broker/blob/master/bin/curl_broker.sh">like this</a>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> PUT http://username:password@localhost:8001/v2/service_instances/instance_guid-111 <span class="nt">-d</span> <span class="s1">'{
+  "service_id":"service-guid-111",
+  "plan_id":"plan-guid",
+  "organization_guid": "org-guid",
+  "space_guid":"space-guid",
+  "parameters": {"ami_id":"ami-ecb68a84"}
+}'</span> <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
+</code></pre></div></div>
+
+<p>Note that the broker accepts an <code class="highlighter-rouge">ami_id</code> parameter (<a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html">AMI</a> 
+identifier).
+To configure a provisioning request in Service Catalog, we need to declare a <code class="highlighter-rouge">ServiceInstance</code> 
+resource with an AMI identifier declared in the <code class="highlighter-rouge">parameters</code> field of its spec:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceInstance</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">ami-instance</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">test-ns</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">serviceClassName</span><span class="pi">:</span> <span class="s">aws-ami</span>
+  <span class="na">planName</span><span class="pi">:</span> <span class="s">default</span>
+  <span class="na">parameters</span><span class="pi">:</span>
+    <span class="na">ami_id</span><span class="pi">:</span> <span class="s">ami-ecb68a84</span>
+</code></pre></div></div>
+
+<h3 id="passing-parameters-as-an-inline-json">Passing parameters as an inline JSON</h3>
+
+<p>As shown in the example above, parameters can be specified directly in the
+<code class="highlighter-rouge">ServiceInstance</code>/<code class="highlighter-rouge">ServiceBinding</code> resource specification in the <code class="highlighter-rouge">parameters</code> field.
+The structure of parameters is not limited to just key-value pairs, arbitrary 
+YAML/JSON structure supported as an input (YAML format gets translated into 
+equivalent JSON structure to be passed to the broker).</p>
+
+<p>Let’s have a look at the broker for 
+<a href="https://docs.pivotal.io/spring-cloud-services/1-4/common/config-server/configuring-with-vault.html">Spring Cloud Config Server</a>,
+as an example.</p>
+
+<p>It requires JSON configuration like this:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"vault"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8200"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"proxy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"http"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"proxy.wise.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>The corresponding <code class="highlighter-rouge">ServiceInstance</code> resource with such configuration can be defined as 
+follows:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">servicecatalog.k8s.io/v1beta1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">ServiceInstance</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">spring-cloud-instance</span>
+  <span class="na">namespace</span><span class="pi">:</span> <span class="s">test-ns</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">serviceClassName</span><span class="pi">:</span> <span class="s">cloud-config</span>
+  <span class="na">planName</span><span class="pi">:</span> <span class="s">default</span>
+  <span class="na">parameters</span><span class="pi">:</span>
+    <span class="na">vault</span><span class="pi">:</span>
+      <span class="na">host</span><span class="pi">:</span> <span class="s">127.0.0.1</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="s2">"</span><span class="s">8200"</span>
+      <span class="na">proxy</span><span class="pi">:</span>
+        <span class="na">http</span><span class="pi">:</span>
+          <span class="na">host</span><span class="pi">:</span> <span class="s">proxy.wise.com</span>
+          <span class="na">port</span><span class="pi">:</span> <span class="s2">"</span><span class="s">80"</span>
+</code></pre></div></div>
+
+<h3 id="referencing-sensitive-data-stored-in-secret">Referencing sensitive data stored in secret</h3>
+
+<p><code class="highlighter-rouge">Secret</code> resources can be used to store sensitive data. The <code class="highlighter-rouge">parametersFrom</code>
+field allows the user to reference the external parameters source.</p>
+
+<p>If the user has sensitive data in their parameters, the entire JSON payload can 
+be stored in a single <code class="highlighter-rouge">Secret</code> key, and passed using a <code class="highlighter-rouge">secretKeyRef</code> field:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="s">...</span>
+  <span class="s">parametersFrom</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">secretKeyRef</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">mysecret</span>
+        <span class="na">key</span><span class="pi">:</span> <span class="s">secret-parameter</span>
+</code></pre></div></div>
+
+<p>The value stored in a secret key must be a valid JSON.</p>
+
+
+        
+           <a href="" onclick="window.open('https://github.com/drycc/service-catalog/issues/new?title=Issue%20with%20' +
+           'service-catalog.drycc.cc'+window.location.pathname)" class="button issue">Create an Issue</a>
+        
+        
+          <a href="/editdocs#docs/parameters.md" class="button issue">Edit this Page</a>
+        
+    </div>
+</section>
+
+<footer col="12">
+    <main class="light-text">
+        <nav>
+            <a href="/docs/walkthrough">Get Started</a>
+            <a href="/docs/">Documentation</a>
+            <a href="/community">Community</a>
+        </nav>
+        <div class="social">
+            <div>
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="https://kubernetes.slack.com/messages/sig-service-catalog" class="slack"><span>Slack</span></a>
+            </div>
+            <div>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-sig-service-catalog" class="mailing-list"><span>Mailing List</span></a>
+            </div>
+            <div>
+                <a href="/docs/install" class="button">Get Service Catalog</a>
+                <a href="/docs/devguide" class="button">Contribute</a>
+            </div>
+        </div>
+        <div id="miceType" class="center">
+            &copy; 2022 The Kubernetes Authors | Documentation Distributed under <a href="/LICENSE" class="light-text">CC BY 4.0</a>
+        </div>
+        <div id="miceType" class="center">
+            Copyright &copy; 2022 The Linux Foundation&reg;. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" class="light-text">Trademark Usage page</a>
+        </div>
+    </main>
+</footer>
+
+<button class="flyout-button" onclick="kub.toggleToc()"></button>
+
+<style>
+.cse .gsc-control-cse, .gsc-control-cse, {
+    padding: 0;
+}
+  .gsc-control-cse table, .gsc-control-cse-en table {
+      margin:0px !important;
+  }
+  .gsc-above-wrapper-area {
+      border-bottom: 0;
+  }
+</style>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-36037335-10', 'auto');
+ga('send', 'pageview');
+
+// hide docs nav area if no nav is present, or if nav only contains a link to the current page
+/*(function () {
+    window.addEventListener('DOMContentLoaded', init)
+
+        // play nice with our neighbors
+        function init() {
+            window.removeEventListener('DOMContentLoaded', init)
+                hideNav()
+        }
+
+    function hideNav(toc){
+        if (!toc) toc = document.querySelector('#docsToc')
+        if (!toc) return
+            var container = toc.querySelector('.container')
+
+                // container is built dynamically, so it may not be present on the first runloop
+                if (container) {
+                    if (container.childElementCount === 0 || toc.querySelectorAll('a.item').length === 1) {
+                        toc.style.display = 'none'
+                            document.getElementById('docsContent').style.width = '100%'
+                    }
+                } else {
+                    requestAnimationFrame(function () {
+                        hideNav(toc)
+                    })
+                }
+    }
+})();*/
+</script>
+
+        <script>
+
+            $(function () {
+                'use strict';
+
+                /* selector */
+                var postHeader = 'h1,h2,h3,h4';
+
+                $(postHeader).filter('[id]').each(function () {
+                    var header      = $(this),
+                            headerID    = header.attr('id'),
+                            anchorClass = 'header-link',
+                            anchorIcon  = '<i class="octicon octicon-link" aria-hidden="true"></i>';
+
+                    if (headerID) {
+                        header.prepend($('<a />').addClass(anchorClass).attr({ 'href': '#' + headerID, 'aria-hidden': 'true' }).html(anchorIcon));
+                    }
+
+                    return this;
+                });
+            });
+
+
+        </script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+    <!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+
+
+</body>
+</html>

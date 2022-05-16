@@ -1,0 +1,407 @@
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+    
+
+  
+
+  
+    
+
+<!Doctype html>
+<html id="docs" class="Concepts">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"><!-- default styles.css on -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/callouts.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/tags.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom-jekyll/hover-anchors.css">
+    
+    
+    <!-- no custom css detected -->
+
+    
+    <meta name="description" content="Concepts" />
+    
+
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/sweetalert.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/custom-jekyll/tags.js"></script>
+    <!-- no custom js detected -->
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Concepts | Service Catalog - Kubernetes</title>
+<meta name="generator" content="Jekyll v3.6.3" />
+<meta property="og:title" content="Concepts" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kubernetes SIG Service Catalog" />
+<meta property="og:description" content="Kubernetes SIG Service Catalog" />
+<link rel="canonical" href="https://service-catalog.drycc.cc/docs/concepts/" />
+<meta property="og:url" content="https://service-catalog.drycc.cc/docs/concepts/" />
+<meta property="og:site_name" content="Service Catalog - Kubernetes" />
+<script type="application/ld+json">
+{"url":"https://service-catalog.drycc.cc/docs/concepts/","@type":"WebPage","headline":"Concepts","description":"Kubernetes SIG Service Catalog","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link type="application/atom+xml" rel="alternate" href="https://service-catalog.drycc.cc/feed.xml" title="Service Catalog - Kubernetes" /> 
+</head>
+
+
+<body>
+
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+
+<header>
+    <a href="/" class="logo"></a>
+
+    <div class="nav-buttons" data-auto-burger="primary">
+        <ul class="global-nav">
+
+            <li><a href="/docs/">Documentation</a></li>
+            <li><a href="https://github.com/drycc/service-catalog">GitHub</a></li>
+            <li><a href="/community">Community</a></li>
+        </ul>
+        <a href="/docs/walkthrough" class="button" id="tryKubernetes" data-auto-burger-exclude>Try Service Catalog</a>
+        <button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+    </div>
+
+    <nav id="mainNav">
+        <main data-auto-burger="primary">
+        <div class="nav-box">
+            <h3><a href="/docs/walkthrough">Get Started</a></h3>
+            <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs "Hello World" for Node.js.</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/docs/">Documentation</a></h3>
+            <p>Learn how to use Kubernetes with the use of walkthroughs, samples, and reference documentation. You can even <a href="/editdocs/" data-auto-burger-exclude>help contribute to the docs</a>!</p>
+        </div>
+        <div class="nav-box">
+            <h3><a href="/community">Community</a></h3>
+            <p>If you need help, you can connect with other Kubernetes users and the Kubernetes authors, attend community events, and watch video presentations from around the web.</p>
+        </div>
+        </main>
+        <main data-auto-burger="primary">
+        <div class="left">
+            <h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+            <a href="https://github.com/kubernetes/kubernetes" class="button" data-auto-burger-exclude>View On Github</a>
+        </div>
+
+        <div class="right">
+            <h5 class="github-invite">Explore the community</h5>
+            <div class="social">
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+                <a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>Stack Overflow</span></a>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-users" class="mailing-list"><span>Mailing List</span></a>
+                <a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+            </div>
+        </div>
+        <div class="clear" style="clear: both"></div>
+        </main>
+    </nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+  <h1>Concepts</h1>
+  <h5>Detailed explanations of Service Catalog system concepts and abstractions.</h5>
+  <div id="vendorStrip" class="light-text">
+    <ul>
+      <li><a href="/docs/" >HOME</a></li>
+      <li><a href="/docs/concepts" class="YAH">CONCEPTS</a></li>
+      <li><a href="/docs/tasks" >TASKS</a></li>
+      <li><a href="/docs/install" >INSTALL</a></li>
+      <li><a href="/docs/walkthrough" >WALKTHROUGH</a></li>
+      <li><a href="/docs/cli" >CLI</a></li>
+    </ul>
+    <div id="searchBox">
+      <input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)" autofocus="autofocus">
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="encyclopedia">
+  <div id="docsToc">
+        <div class="pi-accordion">
+          
+  
+
+    
+
+    
+      <a class="item" data-title="Concepts" href="/docs/concepts/"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Introduction" href="/docs/concepts/#introduction"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Overview" href="/docs/concepts/#overview"></a>
+    
+  
+
+  
+
+    
+
+    
+      <a class="item" data-title="Service Resources" href="/docs/concepts/#service-resources"></a>
+    
+  
+
+
+        </div> <!-- /pi-accordion -->
+    <button class="push-menu-close-button" onclick="kub.toggleToc()"></button>
+  </div> <!-- /docsToc -->
+
+  <div id="docsContent">
+        <p><a href="/editdocs#docs/concepts/index.md" id="editPageButton">Edit This Page</a></p>
+
+        
+          <h1>Concepts</h1>
+        
+
+        <h2 id="introduction">Introduction</h2>
+
+<p>The service-catalog project is in incubation to bring integration with service
+brokers to the Kubernetes ecosystem via the <a href="https://github.com/openservicebrokerapi/servicebroker">Open Service Broker API</a>.</p>
+
+<p>A <em>service broker</em> is an endpoint that manages a set of software offerings
+called <em>services</em>. The end-goal of the service-catalog project is to provide
+a way for Kubernetes users to consume services from brokers and easily
+configure their applications to use those services, without needing detailed
+knowledge about how those services are created or managed.</p>
+
+<p>As an example:</p>
+
+<p>Most applications need a datastore of some kind. The service-catalog allows
+Kubernetes applications to consume services like databases that exist
+<em>somewhere</em> in a simple way:</p>
+
+<ol>
+  <li>A user wanting to consume a database in their application browses a list of
+ available services in the catalog</li>
+  <li>
+    <p>The user asks for a new instance of that service to be <em>provisioned</em></p>
+
+    <p><em>Provisioning</em> means that the broker somehow creates a new instance of a
+service. This could mean basically anything that results in a new instance
+of the service becoming available. Possibilities include: creating a new
+set of Kubernetes resources in another namespace in the same Kubernetes
+cluster as the consumer or a different cluster, or even creating a new
+tenant in a multi-tenant SaaS system. The point is that the
+consumer doesn’t have to be aware of or care at all about the details.</p>
+  </li>
+  <li>
+    <p>The user requests a <em>binding</em> to use the service instance in their application</p>
+
+    <p>Credentials are delivered to users in normal Kubernetes secrets and
+ contain information necessary to connect to and authenticate to the
+ service instance.</p>
+  </li>
+</ol>
+
+<h2 id="overview">Overview</h2>
+
+<p>The service catalog API has five main concepts:</p>
+
+<ul>
+  <li>Open Service Broker API Server: A server that acts as a service broker and
+conforms to the
+<a href="https://github.com/openservicebrokerapi/servicebroker/blob/master/spec.md">Open Service Broker API</a>
+specification. This software could be hosted within your own Kubernetes cluster
+or elsewhere.</li>
+</ul>
+
+<p>The remaining four concepts all map directly to new Kubernetes resource types
+that are provided by the service catalog API.</p>
+
+<ul>
+  <li><code class="highlighter-rouge">ClusterServiceBroker</code>: An in-cluster representation of a broker server. A
+resource of this type encapsulates connection details for that broker server.
+These are created and managed by cluster operators who wish to use that broker
+server to make new types of managed services available within their cluster.</li>
+  <li><code class="highlighter-rouge">ClusterServiceClass</code>: A <em>type</em> of managed service offered by a particular
+broker. Each time a new <code class="highlighter-rouge">ClusterServiceBroker</code> resource is added to the cluster,
+the service catalog controller connects to the corresponding broker server to
+obtain a list of service offerings. A new <code class="highlighter-rouge">ClusterServiceClass</code> resource will
+automatically be created for each.</li>
+  <li><code class="highlighter-rouge">ServiceInstance</code>: A provisioned instance of a <code class="highlighter-rouge">ClusterServiceClass</code>. These
+are created by cluster users who wish to make a new concrete <em>instance</em> of some
+<em>type</em> of managed service to make that available for use by one or more
+in-cluster applications. When a new <code class="highlighter-rouge">ServiceInstance</code> resource is created, the
+service catalog controller will connect to the appropriate broker server and
+instruct it to provision the service instance.</li>
+  <li><code class="highlighter-rouge">ServiceBinding</code>: Expresses intent to use a <code class="highlighter-rouge">ServiceInstance</code>. These are
+created by cluster users who wish for their applications to make use of a
+<code class="highlighter-rouge">ServiceInstance</code>. Upon creation, the service catalog controller will create a
+Kubernetes <code class="highlighter-rouge">Secret</code> containing connection details and credentials for the
+service represented by the <code class="highlighter-rouge">ServiceInstance</code>. Such <code class="highlighter-rouge">Secret</code>s can be used like
+any other– mounted into a container’s file system or injected into a container
+as environment variables.</li>
+</ul>
+
+<p>These concepts and resources are the building blocks of the service catalog.</p>
+
+<h2 id="service-resources">Service Resources</h2>
+
+<p>See <a href="/docs/resources/">Resources</a> for details on each Service Catalog resource (or type).</p>
+
+
+        
+           <a href="" onclick="window.open('https://github.com/drycc/service-catalog/issues/new?title=Issue%20with%20' +
+           'service-catalog.drycc.cc'+window.location.pathname)" class="button issue">Create an Issue</a>
+        
+        
+          <a href="/editdocs#docs/concepts/index.md" class="button issue">Edit this Page</a>
+        
+    </div>
+</section>
+
+<footer col="12">
+    <main class="light-text">
+        <nav>
+            <a href="/docs/walkthrough">Get Started</a>
+            <a href="/docs/">Documentation</a>
+            <a href="/community">Community</a>
+        </nav>
+        <div class="social">
+            <div>
+                <a href="https://github.com/drycc/service-catalog" class="github"><span>Github</span></a>
+                <a href="https://kubernetes.slack.com/messages/sig-service-catalog" class="slack"><span>Slack</span></a>
+            </div>
+            <div>
+                <a href="https://groups.google.com/forum/#!forum/kubernetes-sig-service-catalog" class="mailing-list"><span>Mailing List</span></a>
+            </div>
+            <div>
+                <a href="/docs/install" class="button">Get Service Catalog</a>
+                <a href="/docs/devguide" class="button">Contribute</a>
+            </div>
+        </div>
+        <div id="miceType" class="center">
+            &copy; 2022 The Kubernetes Authors | Documentation Distributed under <a href="/LICENSE" class="light-text">CC BY 4.0</a>
+        </div>
+        <div id="miceType" class="center">
+            Copyright &copy; 2022 The Linux Foundation&reg;. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage" class="light-text">Trademark Usage page</a>
+        </div>
+    </main>
+</footer>
+
+<button class="flyout-button" onclick="kub.toggleToc()"></button>
+
+<style>
+.cse .gsc-control-cse, .gsc-control-cse, {
+    padding: 0;
+}
+  .gsc-control-cse table, .gsc-control-cse-en table {
+      margin:0px !important;
+  }
+  .gsc-above-wrapper-area {
+      border-bottom: 0;
+  }
+</style>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-36037335-10', 'auto');
+ga('send', 'pageview');
+
+// hide docs nav area if no nav is present, or if nav only contains a link to the current page
+/*(function () {
+    window.addEventListener('DOMContentLoaded', init)
+
+        // play nice with our neighbors
+        function init() {
+            window.removeEventListener('DOMContentLoaded', init)
+                hideNav()
+        }
+
+    function hideNav(toc){
+        if (!toc) toc = document.querySelector('#docsToc')
+        if (!toc) return
+            var container = toc.querySelector('.container')
+
+                // container is built dynamically, so it may not be present on the first runloop
+                if (container) {
+                    if (container.childElementCount === 0 || toc.querySelectorAll('a.item').length === 1) {
+                        toc.style.display = 'none'
+                            document.getElementById('docsContent').style.width = '100%'
+                    }
+                } else {
+                    requestAnimationFrame(function () {
+                        hideNav(toc)
+                    })
+                }
+    }
+})();*/
+</script>
+
+        <script>
+
+            $(function () {
+                'use strict';
+
+                /* selector */
+                var postHeader = 'h1,h2,h3,h4';
+
+                $(postHeader).filter('[id]').each(function () {
+                    var header      = $(this),
+                            headerID    = header.attr('id'),
+                            anchorClass = 'header-link',
+                            anchorIcon  = '<i class="octicon octicon-link" aria-hidden="true"></i>';
+
+                    if (headerID) {
+                        header.prepend($('<a />').addClass(anchorClass).attr({ 'href': '#' + headerID, 'aria-hidden': 'true' }).html(anchorIcon));
+                    }
+
+                    return this;
+                });
+            });
+
+
+        </script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+    <!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+
+
+</body>
+</html>
